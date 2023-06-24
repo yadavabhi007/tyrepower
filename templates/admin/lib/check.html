@@ -1,0 +1,71 @@
+<a href="#orange" data-tab="orange" class="b-nav-tab active">
+    Orange
+  </a>
+  <a href="#green" data-tab="green" class="b-nav-tab">
+    Green
+  </a>
+  <a href="#blue" data-tab="blue" class="b-nav-tab">
+    Blue
+  </a>
+  <div id="orange" class="b-tab active">
+    Orange tab content
+  </div>
+  <div id="green" class="b-tab">
+    Green tab content
+  </div>
+  <div id="blue" class="b-tab">
+    Blue tab content
+  </div>
+  <style>
+    .b-tab {
+        padding: 20px;
+        border: 1px solid #000;
+        display: none;
+      }
+      
+      .b-tab.active {
+        display: block;
+      }
+      
+      .b-nav-tab {
+        display: inline-block;
+        padding: 20px;
+      }
+      
+      .b-nav-tab.active {
+       background-color: #ff4200;
+      }
+  </style>
+  <script>
+    'use strict';
+
+function Tabs() {
+  var bindAll = function() {
+    var menuElements = document.querySelectorAll('[data-tab]');
+    for(var i = 0; i < menuElements.length ; i++) {
+      menuElements[i].addEventListener('click', change, false);
+    }
+  }
+
+  var clear = function() {
+    var menuElements = document.querySelectorAll('[data-tab]');
+    for(var i = 0; i < menuElements.length ; i++) {
+      menuElements[i].classList.remove('active');
+      var id = menuElements[i].getAttribute('data-tab');
+      document.getElementById(id).classList.remove('active');
+    }
+  }
+
+  var change = function(e) {
+    clear();
+    e.target.classList.add('active');
+    var id = e.currentTarget.getAttribute('data-tab');
+    document.getElementById(id).classList.add('active');
+  }
+
+  bindAll();
+}
+
+var connectTabs = new Tabs();
+
+  </script>

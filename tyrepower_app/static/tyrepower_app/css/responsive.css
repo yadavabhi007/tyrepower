@@ -1,0 +1,911 @@
+
+@media only screen and (max-width: 480px) {
+
+.nav-toggler i {
+color:#fff;    
+}
+
+.topbar .top-navbar .navbar-header .navbar-brand {
+padding:0px 0px 0px 0px;    
+}
+
+.icon_logo img {
+width:50%;    
+}
+
+.header-icon-text-color {
+padding: 0px 5px;    
+}
+
+.user-note-cart-info-area {
+top: 23px;
+right: 40px;    
+}
+
+.heading-main-div-area.py-4 {
+padding:10px 0px 10px 0px !important;
+}
+
+.search-fillter-info-area .d-flex {
+display:block !important;    
+}
+
+.card-left-main-div .d-flex {
+display:block !important;
+}
+
+/* .tyre-left-left-tyre-image {
+height:70px;    
+} */
+
+.contact-form-main-area  .d-flex {
+display:block !important;
+}
+
+.add-to-card-detail .d-flex  {
+display:block !important;    
+}
+
+.add-to-card-detail button {
+margin: 20px 0px 0px 0px;    
+}
+
+.card-left-main-div .ps-2.w-100 .d-flex {
+display: flex !important;
+align-items: center !important;    
+}
+
+.add-to-card-section h6 {
+font-size: 16px;
+margin-bottom: 5px !important;  
+}
+
+.add-to-card-detail h6 {
+margin-bottom: 5px !important;     
+}
+
+.top-model-code-area {
+padding: 11px 10px 11px 10px;
+}
+
+.search-fillter-info-area .w-50 {
+width:100% !important;
+}
+
+.search-input-field {
+padding: 5px;
+border-radius: 8px;
+border: none;
+text-align:left;
+width: 220px;
+font-size: 17px;    
+}
+
+.btn_submit {
+padding: 5px 10px !important;   
+}
+
+
+.d-flex.main-input-field-area {
+display:flex !important;  
+margin: 0px 0px 20px 0px;  
+}
+
+.search-fillter-info-area .fillter-section-info-main .d-flex {
+display:flex !important;
+}
+
+.fillter-section-info-main .select2  {
+width:150px !important;    
+}
+
+.fillter-section-info-main {
+margin: 30px 0px 30px 0px;   
+}
+
+
+.footer {
+position:inherit; 
+padding: 20px 15px;   
+}
+
+
+.notification_bell .notification-dropdown {
+top: 47px;
+width: 175px;
+right: -40px;
+height: 200px;
+}
+
+.fillter-section-info-main .justify-content-end {
+-webkit-box-pack: inherit !important;
+-ms-flex-pack: inherit !important;
+justify-content:inherit !important;
+}
+
+.box-other-detail-info {
+margin:20px 0px 0px 0px;
+padding:0px 0px 0px 0px;    
+}
+
+
+/*my order page css start here*/
+
+.green-delivered-icon {
+margin-right: 0px;    
+}
+
+.view-download-invoice-main-info {
+display: flex;
+margin: 20px 0px 0px 0px;
+justify-content: space-between;
+}
+
+.download-invoice-btn {
+padding: 10px 15px !important; 
+font-size: 14px;   
+}
+
+.green-delivered-icon {
+margin-right: 0px;    
+}
+  
+/*my order page css start here*/
+
+
+
+/*address page css start here*/
+
+.edit-delet-btn-info {
+display:flex;
+margin: 20px 0px 0px 0px;   
+}
+
+.edit-delet-btn-info .py-1 {
+margin: 0px 20px 0px 0px;    
+}
+
+/*address page css end here*/
+
+
+
+/*change password css start here*/
+
+.setting-tab-main-area .nav-tabs .link_nav {
+padding: 10px 20px 10px 20px;   
+}
+
+
+.setting-tab-detail-main-area {
+margin: 0px 0px 40px 0px;   
+}
+
+/*change password css end here*/
+
+
+
+
+/*cart page css start here*/
+
+.item-foot.cf {
+margin-top:40px;    
+}
+
+.modal-dialog {
+max-width:100%;    
+}
+
+.available-stock-value {
+padding: 5px 5px;    
+}
+
+.cart-btn-info-area .available-stock-value {
+width: 90%;
+margin: 30px 0px 0px 20px !important; 
+}
+
+.cart-btn-info-area .d-flex {
+justify-content:space-between !important;    
+}
+
+.cart-btn-info-area .btn_submit {
+width: 110px;
+}
+
+.cart-btn-info-area {
+margin: 0px 0px 20px 0px;    
+}
+
+/*cart page css end here*/
+
+
+
+
+/*product detail page css start here*/
+
+.img-showcase img {
+height: 200px;    
+}
+
+.product-content {
+padding: 1rem 1rem;
+}
+
+.product-detail ul {
+padding:0px 0px 0px 0px;
+margin:0px 0px 0px 0px;    
+}
+
+
+/*product detail page css start here*/
+
+
+
+}
+
+
+
+
+@media only screen and (min-width:481px) and (max-width: 568px) {
+
+.header-icon-text-color {
+padding: 0px 5px;
+}    
+
+.user-note-cart-info-area {
+top: 23px;
+right: 40px;
+}
+
+.notification_bell .notification-dropdown {
+top: 45px;    
+}
+
+.nav-toggler i {
+color:#fff;    
+}
+
+.topbar .top-navbar .navbar-header .navbar-brand {
+padding:0px 0px 0px 0px;    
+}
+
+.icon_logo img {
+width:60%;    
+}
+
+.heading-main-div-area.py-4 {
+padding:10px 0px 10px 0px !important;
+}
+
+
+.search-input-field {
+padding: 6px;
+border-radius: 10px;
+border: none;
+text-align: left;
+width: 320px;
+font-size: 14px;
+}
+
+.btn_submit {
+padding: 5px 15px !important;   
+font-size: 15px; 
+}
+
+.select2-container .select2-selection--single .select2-selection__rendered {
+font-size: 13px !important;
+}
+
+.fillter-section-info-main .select2 {
+width: 134px !important;  
+}
+
+.search-fillter-info-area .w-50 {
+width: 45% !important;
+}
+
+
+.search-fillter-info-area {
+margin: 20px 0px 20px 0px; 
+}
+    
+
+/*my order page css start here*/
+
+.green-delivered-icon {
+margin-right: 0px;    
+}
+
+.view-download-invoice-main-info {
+display: flex;
+margin: 20px 0px 0px 0px;
+/* justify-content: space-between; */
+}
+
+.view-download-invoice-main-info .py-1 {
+margin: 0px 20px 0px 0px;    
+}
+
+.download-invoice-btn {
+padding: 10px 15px !important; 
+font-size: 14px;   
+}
+
+.green-delivered-icon {
+margin-right: 0px;    
+}
+
+.footer {
+position:inherit;    
+}
+
+/*my order page css start here*/
+
+
+
+
+
+/*address page css start here*/
+
+.edit-delet-btn-info {
+display:flex;
+margin: 20px 0px 0px 0px;   
+}
+
+.edit-delet-btn-info .py-1 {
+margin: 0px 20px 0px 0px;    
+}
+
+
+/*address page css end here*/
+
+
+
+
+/*change password css start here*/
+
+.setting-tab-main-area .nav-tabs .link_nav {
+padding: 10px 20px 10px 20px;   
+}
+
+
+.setting-tab-detail-main-area {
+margin: 0px 0px 40px 0px;   
+}
+
+/*change password css end here*/
+
+
+
+/*cart page css start here*/
+
+.cart-btn-info-area {
+    margin: 0px 0px 20px 0px;    
+    }
+    
+/*cart page css end here*/
+
+
+
+/*product detail page css start here*/
+
+.img-showcase img {
+height: 200px;    
+}
+
+.product-content {
+padding: 1rem 1rem;
+}
+
+.product-detail ul {
+padding:0px 0px 0px 0px;
+margin:0px 0px 0px 0px;    
+}
+
+
+/*product detail page css start here*/
+
+
+}
+
+
+
+@media only screen and (min-width:569px) and (max-width:766px) {
+
+.header-icon-text-color {
+padding: 0px 5px;
+}    
+
+.user-note-cart-info-area {
+top: 23px;
+right: 40px;
+}
+
+.notification_bell .notification-dropdown {
+top: 45px;    
+}    
+
+.nav-toggler i {
+color:#fff;    
+}
+
+.topbar .top-navbar .navbar-header .navbar-brand {
+padding:0px 0px 0px 0px;    
+}
+
+.icon_logo img {
+width:60%;    
+}
+
+.heading-main-div-area.py-4 {
+padding:10px 0px 10px 0px !important;
+}
+
+
+.search-input-field {
+padding: 6px;
+border-radius: 10px;
+border: none;
+text-align: left;
+width: 320px;
+font-size: 14px;
+}
+
+.btn_submit {
+padding: 5px 15px !important;   
+font-size: 15px; 
+}
+
+.select2-container .select2-selection--single .select2-selection__rendered {
+font-size: 13px !important;
+}
+
+.fillter-section-info-main .select2 {
+width:150px !important;  
+}
+
+.search-fillter-info-area .w-50 {
+width: 45% !important;
+}
+
+
+
+.footer {
+position:inherit;    
+}
+
+
+/*my order page css start here*/
+
+.green-delivered-icon {
+margin-right: 0px;    
+}
+
+.view-download-invoice-main-info {
+display: flex;
+margin: 20px 0px 0px 0px;
+}
+
+.view-download-invoice-main-info .py-1 {
+margin: 0px 20px 0px 0px;
+}
+
+.download-invoice-btn {
+padding: 10px 15px !important; 
+font-size: 14px;   
+}
+
+.green-delivered-icon {
+margin-right: 0px;    
+}
+
+/*my order page css start here*/
+
+
+
+/*address page css start here*/
+
+.edit-delet-btn-info {
+display:flex;
+margin: 20px 0px 0px 0px;   
+}
+
+.edit-delet-btn-info .py-1 {
+margin: 0px 20px 0px 0px;    
+}
+
+/*address page css end here*/
+
+
+
+/*change password css start here*/
+
+.setting-tab-main-area .nav-tabs .link_nav {
+padding: 10px 20px 10px 20px;   
+}
+
+
+.setting-tab-detail-main-area {
+margin: 0px 0px 40px 0px;   
+}
+
+/*change password css end here*/
+
+
+
+/*cart page css start here*/
+
+.cart-btn-info-area {
+margin: 0px 0px 20px 0px;    
+}
+
+.item .item-block.ib-qty span.price {
+margin: 20px 0px 0px 0px;    
+}
+
+.item .item-block.ib-total-price  {
+top: 80px;
+right: -120px;    
+}
+
+/*cart page css end here*/
+
+
+/*product detail page css start here*/
+
+.img-showcase img {
+height: 200px;    
+}
+
+.product-content {
+padding: 1rem 1rem;
+}
+
+.product-detail ul {
+padding:0px 0px 0px 0px;
+margin:0px 0px 0px 0px;    
+}
+
+
+/*product detail page css start here*/
+    
+
+
+}
+
+
+
+
+@media only screen and (min-width:767px) and (max-width:768px) {
+
+.nav-toggler i {
+color:#fff;    
+}
+
+.topbar .top-navbar .navbar-header .navbar-brand {
+padding:0px 0px 0px 0px;    
+}
+
+.icon_logo img {
+width:60%;    
+}
+
+.heading-main-div-area.py-4 {
+padding:10px 0px 10px 0px !important;
+}
+
+
+.search-input-field {
+padding: 6px;
+border-radius: 10px;
+border: none;
+text-align: left;
+width: 320px;
+font-size: 14px;
+}
+
+.btn_submit {
+padding: 5px 15px !important;   
+font-size: 15px; 
+}
+
+.select2-container .select2-selection--single .select2-selection__rendered {
+font-size: 13px !important;
+}
+
+.fillter-section-info-main .select2 {
+width:150px !important;  
+}
+
+.search-fillter-info-area .w-50 {
+width: 50% !important;
+}
+
+
+.search-fillter-info-area {
+margin: 20px 0px 20px 0px; 
+} 
+
+
+.footer {
+position:inherit;    
+}
+
+
+/*my order page css start here*/
+
+.green-delivered-icon {
+margin-right: 0px;    
+}
+
+.view-download-invoice-main-info {
+display: flex;
+margin: 20px 0px 0px 0px;
+}
+
+.view-download-invoice-main-info .py-1 {
+margin: 0px 20px 0px 0px;
+}
+
+.download-invoice-btn {
+padding: 10px 15px !important; 
+font-size: 14px;   
+}
+
+.green-delivered-icon {
+margin-right: 0px;    
+}
+
+/*my order page css start here*/
+           
+
+/*address page css start here*/
+
+.edit-delet-btn-info {
+display:flex;
+margin: 20px 0px 0px 0px;   
+}
+
+.edit-delet-btn-info .py-1 {
+margin: 0px 20px 0px 0px;    
+}
+
+/*address page css end here*/
+    
+
+
+/*change password css start here*/
+
+.setting-tab-main-area .nav-tabs .link_nav {
+padding: 10px 20px 10px 20px;   
+}
+
+
+.setting-tab-detail-main-area {
+margin: 0px 0px 40px 0px;   
+}
+
+/*change password css end here*/
+
+
+
+/*cart page css start here*/
+
+.cart-btn-info-area {
+margin: 0px 0px 20px 0px;    
+}
+
+.item .item-block.ib-qty span.price {
+margin: 20px 0px 0px 0px;    
+}
+
+.item .item-block.ib-total-price  {
+top: 80px;
+right: -120px;    
+}
+
+/*cart page css end here*/
+
+
+
+/*product detail page css start here*/
+
+.img-showcase img {
+height: 200px;    
+}
+
+.product-content {
+padding: 1rem 1rem;
+}
+
+.product-detail ul {
+padding:0px 0px 0px 0px;
+margin:0px 0px 0px 0px;    
+}
+
+
+/*product detail page css start here*/
+        
+
+
+
+}
+
+
+
+
+@media only screen and (min-width:769px) and (max-width:898px) {
+
+.search-input-field {
+padding: 8px;
+border-radius: 6px;
+border: none;
+text-align:left;
+width: 350px;
+font-size: 16px;
+}
+
+.btn_submit {
+padding: 7px 30px !important;    
+}
+
+
+.search-fillter-info-area {
+margin: 30px 0px 30px 0px;    
+}
+
+#main-wrapper[data-sidebartype="mini-sidebar"] .sidebar-nav ul .sidebar-item {
+width: 40px;
+}
+
+.sidebar-nav ul .sidebar-item .sidebar-link.active {
+padding: 10px 5px !important;    
+}
+
+.footer {
+ position:inherit;   
+}
+
+/*change password css start here*/
+
+.setting-tab-main-area .nav-tabs .link_nav {
+padding: 10px 20px 10px 20px;   
+}
+
+
+.setting-tab-detail-main-area {
+margin: 0px 0px 40px 0px;   
+}
+
+/*change password css end here*/
+
+
+/*cart page css start here*/
+
+.cart-btn-info-area {
+margin: 0px 0px 20px 0px;    
+}
+
+.item .item-block.ib-qty span.price {
+margin: 20px 0px 0px 0px;    
+}
+
+.item .item-block.ib-total-price  {
+top: 80px;
+right: -120px;    
+}
+
+/*cart page css end here*/
+
+
+}
+
+
+
+
+
+@media only screen and (min-width:899px) and (max-width:992px) {
+
+.search-input-field {
+padding: 8px;
+border-radius: 6px;
+border: none;
+text-align:left;
+width: 350px;
+font-size: 16px;
+}
+
+.btn_submit {
+padding: 7px 30px !important;    
+}
+
+
+.search-fillter-info-area {
+margin: 30px 0px 30px 0px;    
+}
+
+#main-wrapper[data-sidebartype="mini-sidebar"] .sidebar-nav ul .sidebar-item {
+width: 40px;
+}
+
+.sidebar-nav ul .sidebar-item .sidebar-link.active {
+padding: 10px 5px !important;    
+}
+
+
+.footer {
+position:inherit;    
+}
+
+
+/*cart page css start here*/
+
+.cart-btn-info-area {
+margin: 0px 0px 20px 0px;    
+}
+
+.item .item-block.ib-qty span.price {
+margin: 20px 0px 0px 0px;    
+}
+
+/*cart page css end here*/
+        
+
+}
+
+
+
+
+@media only screen and (min-width:993px) and (max-width:1024px) {
+
+.search-input-field {
+padding: 10px; 
+font-size: 17px;
+text-align: left;
+border-radius: 10px;   
+}  
+
+
+.sidebar-nav ul .sidebar-item .sidebar-link.active {
+padding: 10px 10px !important;    
+}
+
+.search-fillter-info-area {
+margin: 30px 0px 30px 0px;    
+}
+
+
+.footer {
+position:inherit;    
+}
+
+
+}
+
+
+
+
+
+@media only screen and (min-width:1025px) and (max-width:1199px) {
+
+
+}
+
+
+
+@media only screen and (min-width:1200px) and (max-width:1299px) { 
+
+.py-4 {
+padding-top: 18px !important;
+padding-bottom: 18px !important;
+}    
+
+}
+
+
+
+@media only screen and (min-width:1200px) and (max-width:1299px) { 
+
+
+}
+

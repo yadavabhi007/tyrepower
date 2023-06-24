@@ -1,0 +1,51 @@
+{% load static mathfilters %}
+<div class="page-wrapper wrapper_page" style="min-height: 250px;">
+    <div class="container-fluid fluid_container responsive_container pt-3 white_bg">
+        <div class="row responsive_row">
+            <div class="col-lg-12">
+            </div>
+            <div class="col-lg-12">
+                <div class="setting-tab-detail-main-area main_area_tab_setting">
+                    <h3>Top Retailers Reports from {{retailer_start_date}} to {{retailer_end_date}}</h3>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="manage-profile" role="tabpanel"
+                            aria-labelledby="manage-profile-tab">
+                            <div class="manage-admins-main-area">
+                                <div class="manage-admins-table-area">
+                                    <table class="table" id="example1">
+                                        <thead>
+                                            <tr>
+                                                <th>Sr No</th>
+                                                <th>Username</th>
+                                                <th>First Name</th>
+                                                <th>Last Name</th>
+                                                <th>Email</th>
+                                                <th>Phone</th>
+                                                <th>Total Purchase</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% if retailers_list %}
+                                            {% for retailer in retailers_list %}
+                                            <tr>
+                                                <td>{{forloop.counter}}</td>
+                                                <td>{{retailer.username|default:''}}</td>
+                                                <td>{{retailer.first_name|default:''}}</td>
+                                                <td>{{retailer.last_name|default:''}}</td>
+                                                <td>{{retailer.email|default:''}}</td>
+                                                <td>{{retailer.phone|default:''}}</td>
+                                                <td>{{retailer.price|default:''}}</td>
+                                            </tr>
+                                            {% endfor %}
+                                            {% endif %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

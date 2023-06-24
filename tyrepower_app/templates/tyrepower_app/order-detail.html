@@ -1,0 +1,161 @@
+{% extends 'tyrepower_app/base.html' %}
+{% block content %}
+{% load static %}
+
+
+<style>
+    @import url("https://rsms.me/inter/inter.css");
+
+    .main-shipping-div-area {
+        max-width: 45rem;
+        margin: 0 auto;
+        border: 1px solid black;
+        border-radius: 5px;
+        padding: 20px;
+        font-family: "Inter", sans-serif;
+        font-size: 14px;
+        box-sizing: border-box;
+    }
+
+    .form {
+        display: grid;
+        grid-gap: 1rem;
+    }
+
+    .field {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #20201f;
+        padding: .5rem;
+        border-radius: .25rem;
+    }
+
+    .field__label {
+        color: var(--color-gray);
+        font-size: 0.6rem;
+        font-weight: 300;
+        text-transform: uppercase;
+        margin-bottom: 0.25rem
+    }
+
+    .field__input {
+        padding: 0;
+        margin: 0;
+        border: 0;
+        outline: 0;
+        font-weight: bold;
+        font-size: 1rem;
+        width: 100%;
+        -webkit-appearance: none;
+        appearance: none;
+        background-color: transparent;
+    }
+
+    .field:focus-within {
+        border-color: #000;
+    }
+
+    .fields {
+        display: grid;
+        grid-gap: 1rem;
+    }
+
+    .fields--2 {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .fields--3 {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .button {
+        background-color: #000;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        font-weight: 600;
+        display: block;
+        color: #fff;
+        width: 100%;
+        padding: 1rem;
+        border-radius: 0.25rem;
+        border: 0;
+        cursor: pointer;
+        outline: 0;
+    }
+
+    .button:focus-visible {
+        background-color: #333;
+    }
+</style>
+
+
+<div class="page-wrapper wrapper_page">
+    <div class="page-breadcrumb bg-white white_bg">
+        <div class="search-stock-main-div">
+            <div class="my-4">
+                <div class="heading-main-div-area py-4 bg-white">
+                    <h2 class="text-center p-0 m-0">Enter Following Details...</h2>
+                </div>
+            </div>
+            <div class="order-detail-info-area">
+            <div class="main-shipping-div-area">
+                <h1>Order Detail</h1>
+                <p>Please enter your order details.</p>
+                <hr />
+                <form class="contact-form-main-area" action="{% url 'add-to-my-order' %}" method="post" id="paymentFrm">
+                    {% csrf_token %}
+                    <div class="form">
+                        <label class="field">
+                            <span class="field__label" for="product_delivery">Delivery Type
+                            </span>
+                            <select class="field__input" name="product_delivery" id="product_delivery">
+                                <option value="Courier Service">Courier Service</option>
+                                <option value="Self Pickup">Self Pickup</option>
+                            </select>
+                        </label>
+                        <label class="field">
+                            <div class="form-group">
+                                <label for="service">Choose Shipping Address</label>
+                                <div class="profile-input-box-area select-parent">
+                                    <select class="form-control change_border" id="shipping_address" name="shipping_address">
+                                        <option value="">---------------</option>
+                                        {% for address in addresses %}
+                                        <option value="{{address.id}}">
+                                            {{address}}
+                                        </option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </label>
+                        <div class="fields">
+                            <label class="field">
+                                <span class="field__label" for="driver_name">Driver's Full Name</span>
+                                <input class="field__input" type="text" name="driver_name"
+                                    id="driver_name"/>
+                            </label>
+                        </div>
+                        <div class="fields">
+                            <label class="field">
+                                <span class="field__label" for="vehical_name">Vehical Name</span>
+                                <input class="field__input" type="text" name="vehical_name"
+                                    id="vehical_name"/>
+                            </label>
+                        </div>
+                        <div class="fields">
+                            <label class="field">
+                                <span class="field__label" for="vehical_number">Vehical Number</span>
+                                <input class="field__input" type="text" name="vehical_number"
+                                    id="vehical_number"/>
+                            </label>
+                        </div>
+                    </div>
+                    <hr>
+                    <button class="button btn_submit" type="submit">Continue</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,65 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block my_title2 %} Change Order {% endblock my_title2 %}
+
+{% block content %}
+
+<style>
+  .container {
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  h1 {
+    font-size: 22px;
+    width: 25%;
+    margin-top: 0;
+  }
+
+  .text-field {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 250px;
+  }
+
+  .orders-btn {
+    background-color: #151514 !important;
+    padding: 7px 25px !important;
+    text-align: center !important;
+    transition: 0.5s !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 20px #eee !important;
+    border-radius: 5px !important;
+    outline: none !important;
+    border: none !important;
+    margin-right: 50px;
+  }
+
+  .orders-btn:hover {
+    background-color: #e0313c !important;
+    color: #fff !important;
+    outline: none !important;
+    border: none !important;
+  }
+
+  .confirm-button{
+    margin: 40px 0 0 0 !important;
+    padding: 40px 0 0 0;
+  }
+</style>
+
+
+<div class="container">
+    <p>Are you sure you want to delete the order "{{order.order_id}}"? All of the following related items will be deleted</p>
+    <div class="d-flex align-items-center justify-content-between mb-3 confirm-button">
+        <a class="orders-btn" href="{% url 'order-delete' order.id %}">Yes, I'm sure</a>
+        <a class="orders-btn" href="{% url 'order-update' order.id %}">No, take me back</a>
+    </div>
+</div>
+{% endblock content %}

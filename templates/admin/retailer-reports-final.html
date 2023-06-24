@@ -1,0 +1,132 @@
+<style>
+    .card {
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
+    }
+
+    .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 0 solid rgba(0, 0, 0, .125);
+        border-radius: .25rem;
+    }
+
+    .card-body {
+        flex: 1 1 auto;
+        min-height: 1px;
+        padding: 1rem;
+    }
+
+    .gutters-sm {
+        margin-right: -8px;
+        margin-left: -8px;
+    }
+
+    .gutters-sm>.col,
+    .gutters-sm>[class*=col-] {
+        padding-right: 8px;
+        padding-left: 8px;
+    }
+
+    .mb-3,
+    .my-3 {
+        margin-bottom: 1rem !important;
+    }
+
+    .bg-gray-300 {
+        background-color: #e2e8f0;
+    }
+
+    .h-100 {
+        height: 100% !important;
+    }
+
+    .shadow-none {
+        box-shadow: none !important;
+    }
+
+    .retailer-detail-btn {
+        background-color: #151514 !important;
+        padding: 7px 25px !important;
+        text-align: center !important;
+        transition: 0.5s !important;
+        color: #ffffff !important;
+        box-shadow: 0 0 20px #eee !important;
+        border-radius: 5px !important;
+        outline: none !important;
+        border: none !important;
+    }
+
+    .retailer-detail-btn:hover {
+        background-color: #e0313c !important;
+        color: #fff !important;
+        outline: none !important;
+        border: none !important;
+    }
+</style>
+
+{% extends "admin/base_site.html" %}
+
+{% block my_title2 %} Retailer Reports {% endblock my_title2 %}
+{% block content %}
+<div class="page-wrapper wrapper_page" style="min-height: 250px;">
+    <div class="container-fluid fluid_container responsive_container pt-3 white_bg">
+        <div class="row responsive_row">
+            <div class="col-lg-12">
+            </div>
+            <div class="col-lg-12">
+                <div class="setting-tab-detail-main-area main_area_tab_setting">
+                    <h3>Top Retailers Reports from {{retailer_start_date}} to {{retailer_end_date}}</h3>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="manage-profile" role="tabpanel"
+                            aria-labelledby="manage-profile-tab">
+                            <div class="manage-admins-main-area">
+                                <div class="manage-admins-table-area">
+                                    <table class="table" id="example1">
+                                        <thead>
+                                            <tr>
+                                                <th>Sr No</th>
+                                                <th>Username</th>
+                                                <th>First Name</th>
+                                                <th>Last Name</th>
+                                                <th>Email</th>
+                                                <th>Phone</th>
+                                                <th>Total Purchase</th>
+                                                <th>View Details</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% if retailers_list %}
+                                            {% for retailer in retailers_list %}
+                                            <tr>
+                                                <td>{{forloop.counter}}</td>
+                                                <td>{{retailer.username|default:''}}</td>
+                                                <td>{{retailer.first_name|default:''}}</td>
+                                                <td>{{retailer.last_name|default:''}}</td>
+                                                <td>{{retailer.email|default:''}}</td>
+                                                <td>{{retailer.phone|default:''}}</td>
+                                                <td>{{retailer.price|default:''}}</td>
+                                                <td><a href="{% url 'retailer-detail' retailer.id %}">Detail</a></td>
+                                            </tr>
+                                            {% endfor %}
+                                            {% endif %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="py-1">
+                                <a href="{% url 'retailers-reports-pdf' %}"><button class="retailer-detail-btn">Download
+                                        Reports</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

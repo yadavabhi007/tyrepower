@@ -1,0 +1,207 @@
+<style>
+    .card {
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
+
+    .table-main-upper-div-area .dataTables_wrapper .row:first-child {
+        align-items: center;
+        justify-content: center;
+    }
+
+    .actions {
+        padding: 0px 5px !important;
+    }
+
+    .actions label {
+        color: #151514;
+        margin-bottom: 0px;
+    }
+
+    .actions select {
+        padding: 3px 10px;
+    }
+
+    .actions button {
+        border: none;
+        padding: 2px 15px !important;
+        background: #151514;
+        color: #fff;
+        border-radius: 5px;
+        transition: 0.5s;
+    }
+
+    .actions button:hover {
+        background-color: #e0313c;
+    }
+
+    .actions .action-counter {
+        color: #e0313c;
+        font-weight: 500;
+        font-size: 15px !important;
+    }
+
+    .dataTables_filter label {
+        margin-bottom: 0px;
+    }
+
+    #changelist table tfoot {
+        color: #666;
+    }
+
+    .retailer-detail-btn {
+        background-color: #151514 !important;
+        padding: 7px 25px !important;
+        text-align: center !important;
+        transition: 0.5s !important;
+        color: #ffffff !important;
+        box-shadow: 0 0 20px #eee !important;
+        border-radius: 5px !important;
+        outline: none !important;
+        border: none !important;
+    }
+
+    .retailer-detail-btn:hover {
+        background-color: #e0313c !important;
+        color: #fff !important;
+        outline: none !important;
+        border: none !important;
+    }
+
+    .module ul,
+    .module ol {
+        margin-left: 0rem !important;
+    }
+
+    .page-link {
+        color: #e0313c !important;
+    }
+
+    .page-link:hover {
+        color: #fff !important;
+        background-color: #000000 !important;
+        border-color: #e0313c !important;
+    }
+
+    .pagination-curve {
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+    }
+</style>
+
+{% extends "admin/base_site.html" %}
+
+{% block my_title2 %} Retailer {% endblock my_title2 %}
+
+{% block content %}
+
+<div id="content-main" class="mt-3">
+    <div class="module filtered" id="changelist">
+        <form id="changelist-form" method="post" novalidate="">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body table-responsive table-main-upper-div-area">
+                            <div id="result_list_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                <link rel="stylesheet" type="text/css"
+                                    href="/static/admin-lte/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        {% if page_obj %}
+                                        <table id="result_list"
+                                            class="table table-hover table-striped table-head-fixed dataTable"
+                                            role="grid" aria-describedby="result_list_info">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="sorting" tabindex="0" aria-controls="result_list"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="ID: activate to sort column ascending"
+                                                        style="width: 42.2812px;">
+                                                        <span>ID</span>
+                                                    </th>
+                                                    <th class="sorting" tabindex="0" aria-controls="result_list"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Username: activate to sort column ascending"
+                                                        style="width: 271.188px;">
+                                                        <span>Username</span>
+                                                    </th>
+                                                    <th class="sorting" tabindex="0" aria-controls="result_list"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Name: activate to sort column ascending"
+                                                        style="width: 240.078px;">
+                                                        <span>Name</span>
+                                                    </th>
+                                                    <th class="sorting" tabindex="0" aria-controls="result_list"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Detail: activate to sort column ascending"
+                                                        style="width: 240.109px;">
+                                                        <span>Detail</span>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for retailer in page_obj %}
+                                                <tr class="row1 odd" role="row">
+                                                    <th class="field-Sr No"><a
+                                                            href="{% url 'retailer-detail' retailer.id %}">{{retailer.id}}</a>
+                                                    </th>
+                                                    <td class="field-Username">{{retailer.username}}</td>
+                                                    <td class="field-Name nowrap">{{retailer.first_name}}
+                                                        {{retailer.last_name}}</td>
+                                                    <td class="field-Detail"
+                                                        style="padding: 5px 0px 0px 0px;">
+                                                        <a class="retailer-detail-btn"
+                                                            href="{% url 'retailer-detail' retailer.id %}">Detail</a>
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <th rowspan="1" colspan="1">
+                                                        <span>ID</span>
+                                                    </th>
+                                                    <th rowspan="1" colspan="1">
+                                                        <span>Username</span>
+                                                    </th>
+                                                    <th rowspan="1" colspan="1">
+                                                        <span>Name</span>
+                                                    </th>
+                                                    <th rowspan="1" colspan="1">
+                                                        <span>Detail</span>
+                                                    </th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                        <div class="row align-items-center justify-content-end">
+                                            <nav aria-label="...">
+                                                <ul class="pagination mb-0">
+                                                    <li class="page-item">
+                                                        {% if page_obj.has_previous %}
+                                                        <a class="page-link"
+                                                            href="?page={{page_obj.previous_page_number}}">Previous</a>
+                                                        {% endif %}
+                                                    </li>
+                                                    <span class="page-link pagination-curve">{{page_obj.number}}</span>
+                                                    <li class="page-item">
+                                                        {% if page_obj.has_next %}
+                                                        <a class="page-link"
+                                                            href="?page={{page_obj.next_page_number}}">Next</a>
+                                                        {% endif %}
+                                                    </li>
+                                                </ul>
+                                            </nav>
+                                        </div>
+                                        {% else %}
+                                        <h3 class="text-center alert alert-warning">No Data Available</h3>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}

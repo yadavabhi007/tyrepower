@@ -1,0 +1,265 @@
+<style>
+    aside.main-sidebar.sidebar-dark-primary.elevation-4 {
+        background: white !important;
+    }
+
+    span.menu-title {
+        color: #444 !important;
+        font-size: 17px;
+    }
+
+    span.brand-text.font-weight-light {
+        color: #8b6fc0;
+        font-weight: 600 !important;
+    }
+
+    .leftside_icon {
+        color: #8b6fc0;
+    }
+
+    li.nav-header {
+        display: none;
+    }
+
+    section.content-header {
+        background: #fff;
+        color: #151514;
+        margin-left: 4px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        text-align: center;
+        margin: 4px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+        border-radius: 5px;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
+
+    .info a {
+        color: black !important;
+        font-size: 17px !important;
+    }
+
+    li.nav-header {
+        color: black !important;
+        font-size: 17px !important;
+    }
+
+    [class*=sidebar-dark] .brand-link {
+        border-bottom: 1px solid #bdc6cf;
+    }
+
+    [class*=sidebar-dark] .user-panel {
+        border-bottom: 1px solid #bdc6cf;
+    }
+
+    .sub-menu a {
+        color: black !important;
+    }
+
+    i.fas.fa-bars {
+        color: #8b6fc0;
+        font-size: 25px;
+    }
+
+    .elevation-4 {
+        box-shadow: unset !important;
+    }
+
+    .navbar-expand .navbar-nav .nav-link {
+
+        padding-left: 0px;
+    }
+
+    .user-panel.mt-3.pb-3.mb-3.d-flex {
+        display: none !important;
+    }
+
+    li.nav-item {
+        width: 100%;
+    }
+
+
+    .sub-menu li.nav-item a:hover {
+        background-color: #8b6fc0 !important;
+    }
+
+    nav#sidebar {
+        padding-left: unset !important;
+        padding-right: unset !important;
+    }
+
+    li.nav-item:hover {
+        background: #e6e2ef;
+        color: white !important;
+        width: 100%;
+    }
+
+    .sidebar {
+        padding-left: unset;
+        padding-right: unset;
+    }
+
+    .main-icon-div-area {
+        display: inline-block;
+        width: 35px;
+    }
+
+    .nav-pills .nav-link.active,
+    .nav-pills .show>.nav-link {
+        background-color: #e0313c;
+        color: #fff;
+        margin: 0px 5px;
+        border-radius: 30px;
+    }
+
+    .sidebar-mini.sidebar-collapse .main-sidebar,
+    .sidebar-mini.sidebar-collapse .main-sidebar::before {
+        width: 3rem;
+    }
+
+    .sidebar-mini.sidebar-collapse .content-wrapper,
+    .sidebar-mini.sidebar-collapse .main-footer,
+    .sidebar-mini.sidebar-collapse .main-header {
+        margin-left: 3.0rem !important;
+    }
+</style>
+
+{% extends 'adminlte/lib/_main_sidebar.html' %}
+{% load admin_menu %}
+{% load static %}
+
+{% block nav_links %}
+
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<nav class="sidebar sidebar-offcanvas mt-2" id="sidebar">
+    <ul class="nav myDIV">
+        <li class="nav-item">
+            <a class="nav-link sidebar-item {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}" href="{% url 'dashboard' %}" aria-expanded="false"
+                aria-controls="ui-basic">
+                <div class="main-icon-div-area">
+                    <i class="fas fa-tachometer-alt leftside_icon"></i>
+                </div>
+                <span class="menu-title">Dashboard</span>
+                <i class="menu-arrow"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link sidebar-item {% if request.resolver_match.url_name == 'tyrepower_app_user_changelist' %}active{% endif %}" href="{% url 'admin:tyrepower_app_user_changelist' %}" aria-expanded="false"
+                aria-controls="ui-basic">
+                <div class="main-icon-div-area">
+                    <i class="fas fa-solid fa-user leftside_icon"></i>
+                </div>
+                <span class="menu-title">Retailers</span>
+                <i class="menu-arrow"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link sidebar-item {% if request.resolver_match.url_name == 'tyrepower_app_tier_changelist' %}active{% endif %}" href="{% url 'admin:tyrepower_app_tier_changelist' %}" aria-expanded="false"
+                aria-controls="ui-basic">
+                <div class="main-icon-div-area">
+                    <i class="fa fa-percent leftside_icon"></i>
+                </div>
+                <span class="menu-title">Tiers And Pricing</span>
+                <i class="menu-arrow"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link sidebar-item {% if request.resolver_match.url_name == 'tyrepower_app_manufacturer_changelist' %}active{% endif %}" href="{% url 'admin:tyrepower_app_manufacturer_changelist' %}" aria-expanded="false"
+                aria-controls="ui-basic">
+                <div class="main-icon-div-area">
+                    <i class="fa fa-id-badge leftside_icon"></i>
+                </div>
+                <span class="menu-title">Manufacturers</span>
+                <i class="menu-arrow"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link sidebar-item {% if request.resolver_match.url_name == 'tyrepower_app_proxytyre_changelist' %}active{% endif %}" href="{% url 'admin:tyrepower_app_proxytyre_changelist' %}" aria-expanded="false"
+                aria-controls="ui-basic">
+                <div class="main-icon-div-area">
+                    <i class="fas fa-solid fa-truck leftside_icon"></i>
+                </div>
+                <span class="menu-title">Tyres</span>
+                <i class="menu-arrow"></i>
+            </a>
+        </li>
+        <!-- <li class="nav-item">
+            <a class="nav-link sidebar-item {% if request.resolver_match.url_name == 'tyrepower_app_topsearch_changelist' %}active{% endif %}" href="{% url 'admin:tyrepower_app_topsearch_changelist' %}" aria-expanded="false"
+                aria-controls="ui-basic">
+                <div class="main-icon-div-area">
+                    <i class="fas fa-duotone fa-search leftside_icon"></i>
+                </div>
+                <span class="menu-title">Top Searches</span>
+                <i class="menu-arrow"></i>
+            </a>
+        </li> -->
+        <!-- <li class="nav-item">
+            <a class="nav-link sidebar-item {% if request.resolver_match.url_name == 'tyrepower_app_cart_changelist' %}active{% endif %}" href="{% url 'admin:tyrepower_app_cart_changelist' %}" aria-expanded="false"
+                aria-controls="ui-basic">
+                <div class="main-icon-div-area">
+                    <i class="fas fa-duotone fa-cart-plus leftside_icon"></i>
+                </div>
+                <span class="menu-title">Carts</span>
+                <i class="menu-arrow"></i>
+            </a>
+        </li> -->
+        <!-- <li class="nav-item">
+            <a class="nav-link sidebar-item {% if request.resolver_match.url_name == 'tyrepower_app_order_changelist' %}active{% endif %}" href="{% url 'admin:tyrepower_app_order_changelist' %}" aria-expanded="false"
+                aria-controls="ui-basic">
+                <div class="main-icon-div-area">
+                    <i class="fa fa-shopping-bag leftside_icon"></i>
+                </div>
+                <span class="menu-title">Orders</span>
+                <i class="menu-arrow"></i>
+            </a>
+        </li> -->
+        <li class="nav-item">
+            <a class="nav-link sidebar-item {% if request.resolver_match.url_name == 'orders' %}active{% endif %}" href="{% url 'orders' %}" aria-expanded="false"
+                aria-controls="ui-basic">
+                <div class="main-icon-div-area">
+                    <i class="fa fa-shopping-bag leftside_icon"></i>
+                </div>
+                <span class="menu-title">Orders</span>
+                <i class="menu-arrow"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link sidebar-item {% if request.resolver_match.url_name == 'price-reports' %}active{% endif %}" href="{% url 'price-reports' %}" aria-expanded="false"
+                aria-controls="ui-basic">
+                <div class="main-icon-div-area">
+                    <i class="fas fa-solid fa-receipt leftside_icon"></i>
+                </div>
+                <span class="menu-title">Reports</span>
+                <i class="menu-arrow"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link sidebar-item {% if request.resolver_match.url_name == 'tyrepower_app_notification_changelist' %}active{% endif %}" href="{% url 'admin:tyrepower_app_notification_changelist' %}" aria-expanded="false"
+                aria-controls="ui-basic">
+                <div class="main-icon-div-area">
+                    <i class="fa fa-bell leftside_icon"></i>
+                </div>
+                <span class="menu-title">Notifications</span>
+                <i class="menu-arrow"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link sidebar-item {% if request.resolver_match.url_name == 'tyrepower_app_privacypolicy_changelist' %}active{% endif %}" href="{% url 'admin:tyrepower_app_privacypolicy_changelist' %}" aria-expanded="false"
+                aria-controls="ui-basic">
+                <i class="fa fa-lock leftside_icon"></i>
+                <span class="menu-title" style="margin-left: 18px; color:white ">Privacy Policies</span>
+                <i class="menu-arrow"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link sidebar-item {% if request.resolver_match.url_name == 'tyrepower_app_termandcondition_changelist' %}active{% endif %}" href="{% url 'admin:tyrepower_app_termandcondition_changelist' %}" aria-expanded="false"
+                aria-controls="ui-basic">
+                <i class="fa fa-file leftside_icon"></i>
+                <span class="menu-title" style="margin-left: 18px; color:white ">Terms And Conditions</span>
+                <i class="menu-arrow"></i>
+            </a>
+        </li>
+    </ul>
+</nav>
+{% endblock nav_links %}

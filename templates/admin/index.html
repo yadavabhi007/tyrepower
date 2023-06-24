@@ -1,0 +1,269 @@
+<style>
+    .customer-parent {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+    }
+
+    p.cus-num {
+        margin-bottom: -4px;
+        color: #0f95ab;
+        font-weight: 600;
+        font-size: 22px;
+    }
+
+    .col-md-3.card-col {
+        max-width: 230px;
+        padding-left: unset;
+        padding-right: unset;
+        margin-right: 20px;
+    }
+
+    .col-md-3.card-last {
+        background: #dff0d8;
+        max-width: 230px;
+        padding-left: unset;
+        padding-right: unset;
+    }
+
+    .bg-col1 {
+        background: #8b6fc02e;
+    }
+
+    .bg-col2 {
+        background: #e3f53d54;
+    }
+
+    .bg-col3 {
+        background: #facfe89c;
+    }
+
+    .customer-icon i {
+        color: #e0313c;
+        font-size: 35px;
+    }
+
+    .card-bootom {
+        margin-top: 35px;
+        background: #151514;
+        border-bottom-left-radius: 3px;
+        border-bottom-right-radius: 3px;
+        padding: 5px 10px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    i.bottom-icon {
+        font-size: 18px;
+        color: white;
+        margin-top: 6px;
+    }
+
+    .button-card button {
+        background: unset;
+        border: unset;
+        color: white;
+        font-weight: 500;
+        font-size: 19px;
+        padding: unset;
+        margin: unset;
+    }
+
+    .button-card button:focus {
+        outline: unset;
+    }
+
+    .container-fluid.card-cont {
+        padding-left: unset;
+        padding-right: unset !important;
+    }
+
+    p.cus-para {
+        font-size: 18px;
+        color: #0f95ab;
+        font-weight: 600;
+    }
+
+    .row.row-cus {
+        margin-left: -3px;
+    }
+
+    .dashboard-main-card-div {
+        background-color: #fff;
+        border-radius: 3px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    }
+
+    .dashboard-category-information-div-area{
+        position: absolute;
+        width: 91.5%;
+        top: 46%;
+    }
+
+    .dashboard-category-value{
+        font-weight: 600;
+        font-size: 25px;
+        color: #e0313c;
+        margin-bottom: 0px;
+        background: #000;
+        padding: 0px 18px;
+        border-radius: 5px;
+        transition: all 0.5s ease-in-out;
+        cursor: pointer;
+    }
+
+    .dashboard-category-value:hover{
+        color: #fff;
+        background-color: #e0313c;
+        transform: rotate(360deg)
+    }
+
+    .dashboard-category-info{
+        font-size: 15px;
+        font-weight: 600;
+        color: #151514;
+    }
+
+</style>
+
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+{% load admin_menu %}
+
+{% block extrastyle %}
+{{ block.super }}
+{% endblock %}
+
+{% block coltype %}colMS{% endblock %}
+
+{% block bodyclass %}{{ block.super }} dashboard{% endblock %}
+{% if not is_popup %}
+{% block breadcrumbs %}
+<div class="row">
+    <div class="col-sm-12">
+        <h2 class="mb-0">{% firstof title 'Tyre Power Administration' %}</h2>
+    </div>
+</div>
+{% endblock %}
+{% endif %}
+
+
+{% block content %}
+<section>
+    <div class="container-fluid card-cont" style="padding: 0px 0.2rem;">
+        <div class="row mt-3 row-cus">
+            <div class="col-md-3 card-col bg-col1 dashboard-main-card-div">
+                <div class="customer-parent">
+                    <div class="customer-icon"><i class="fa fa-user"></i></div>
+                    <div class="customer-text" style="height: 46px">
+                        <p style="color: #141414; font-size: 15px;" class="cus-para">Retailers</p>
+                    </div>
+                    <div class="dashboard-category-information-div-area">
+                        <div class="dashboard-category-information-inner-div-area d-flex align-items-center justify-content-between w-100">
+                            <p class="p-0 m-0 dashboard-category-info">Total Retailers</p>
+                            <h3 class="dashboard-category-value m-0">{{total_users}}</h3>
+                        </div>
+                    </div>
+                </div>
+                <a href="{% url 'admin:tyrepower_app_user_changelist' %}">
+                    <div class="card-bootom">
+                        <div class="button-card"><button>View</button></div>
+                        <div><i class="bottom-icon fas fa-arrow-circle-right"></i></div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-3 card-col bg-col1 dashboard-main-card-div">
+                <div class="customer-parent">
+                    <div class="customer-icon"><i class="fas fa-solid fa-truck-monster leftside_icon"></i></div>
+                    <div class="customer-text" style="height: 46px">
+                        <p style="color: #141414; font-size: 15px;" class="cus-para">Tyres</p>
+                    </div>
+                    <div class="dashboard-category-information-div-area">
+                        <div class="dashboard-category-information-inner-div-area d-flex align-items-center justify-content-between w-100">
+                            <p class="p-0 m-0 dashboard-category-info">Total Tyres</p>
+                            <h3 class="dashboard-category-value m-0">{{total_tyres}}</h3>
+                        </div>
+                    </div>
+                </div>
+                <a href="{% url 'admin:tyrepower_app_proxytyre_changelist' %}">
+                    <div class="card-bootom">
+                        <div class="button-card"><button>View</button></div>
+                        <div><i class="bottom-icon fas fa-arrow-circle-right"></i></div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-3 card-col bg-col1 dashboard-main-card-div">
+                <div class="customer-parent">
+                    <div class="customer-icon"><i class="fas fa-duotone fa-cart-plus leftside_icon"></i></div>
+                    <div style="width: 78%; margin-bottom: 16px;" class="customer-text d-flex align-items-center justify-content-between" >
+                        <p style="color: #141414; font-size: 15px;" class="cus-para p-0 m-0">Total Orders</p>
+                        <h5 class="dashboard-category-value m-0" style="padding: 0px 18px;">{{total_orders}}</h5>
+                    </div>
+                    <div class="dashboard-category-information-div-area">
+                        <div class="dashboard-category-information-inner-div-area d-flex align-items-center justify-content-between w-100">
+                            <p class="p-0 m-0 dashboard-category-info">Pending Orders</p>
+                            <h3 class="dashboard-category-value m-0">{{pending_orders}}</h3>
+                        </div>
+                    </div>
+                </div>
+                <a href="{% url 'orders' %}">
+                    <div class="card-bootom">
+                        <div class="button-card"><button>View</button></div>
+                        <div><i class="bottom-icon fas fa-arrow-circle-right"></i></div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-3 card-col bg-col1 dashboard-main-card-div">
+                <div class="customer-parent">
+                    <div class="customer-icon"><i class="fa fa-bell"></i></div>
+                    <div class="customer-text" style="height: 46px">
+                        <p style="color: #141414; font-size: 15px;" class="cus-para">Notifications</p>
+                    </div>
+                    <div class="dashboard-category-information-div-area">
+                        <div class="dashboard-category-information-inner-div-area d-flex align-items-center justify-content-between w-100">
+                            <p class="p-0 m-0 dashboard-category-info">Total Notifications</p>
+                            <h3 class="dashboard-category-value m-0">{{total_notifications}}</h3>
+                        </div>
+                    </div>
+                </div>
+                <a href="{% url 'admin:tyrepower_app_notification_changelist' %}">
+                    <div class="card-bootom">
+                        <div class="button-card"><button>View</button></div>
+                        <div><i class="bottom-icon fas fa-arrow-circle-right"></i></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="row row-cus" style="margin-top: 20px;">
+            <div class="col-md-3 card-col bg-col1 dashboard-main-card-div">
+                <div class="customer-parent">
+                    <div class="customer-icon"><i class="fa fa-lock"></i></div>
+                    <div class="customer-text" style="height: 46px">
+                        <p style="color: #141414; font-size: 15px;" class="cus-para">Privacy Policy</p>
+                    </div>
+                </div>
+                <a href="{% url 'admin:tyrepower_app_privacypolicy_changelist' %}">
+                    <div class="card-bootom">
+                        <div class="button-card"><button>View</button></div>
+                        <div><i class="bottom-icon fas fa-arrow-circle-right"></i></div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-3 card-col bg-col1 dashboard-main-card-div">
+                <div class="customer-parent">
+                    <div class="customer-icon"><i class="fa fa-file"></i></div>
+                    <div class="customer-text" style="height: 46px">
+                        <p style="color: #141414; font-size: 15px;" class="cus-para">Terms & Conditions</p>
+                    </div>
+                </div>
+                <a href="{% url 'admin:tyrepower_app_termandcondition_changelist' %}">
+                    <div class="card-bootom">
+                        <div class="button-card"><button>View</button></div>
+                        <div><i class="bottom-icon fas fa-arrow-circle-right"></i></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

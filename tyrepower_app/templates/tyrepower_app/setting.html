@@ -1,0 +1,349 @@
+{% extends 'tyrepower_app/base.html' %}
+{% block content %}
+{% load static %}
+
+<style>
+    .info {
+        color: green;
+        margin-left: 22px;
+    }
+
+    .error {
+        color: red;
+        margin-left: 22px;
+    }
+
+    .form-group {
+        margin-bottom: 10px;
+        padding-bottom: 20px;
+        position: relative;
+    }
+
+    .form-group label {
+        display: inline-block;
+        margin-bottom: 5px;
+    }
+
+    .form-group input {
+        border: 2px solid #f0f0f0;
+        border-radius: 4px;
+        display: block;
+        font-family: inherit;
+        font-size: 14px;
+        padding: 10px;
+        width: 100%;
+    }
+
+    .form-group input:focus {
+        outline: 0;
+        border-color: #777;
+    }
+
+    .form-group.success input {
+        border-color: #2ecc71;
+    }
+
+    .form-group.error input {
+        border-color: #e74c3c;
+    }
+
+    .form-group i {
+        visibility: hidden;
+        position: absolute;
+        top: 40px;
+        right: 10px;
+    }
+
+    .form-group.success i.fa-check-circle {
+        color: #2ecc71;
+        visibility: visible;
+    }
+
+    .form-group.error i.fa-exclamation-circle {
+        color: #e74c3c;
+        visibility: visible;
+    }
+
+    .form-group small {
+        color: #e74c3c;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        visibility: hidden;
+    }
+
+    .form-group.error small {
+        visibility: visible;
+    }
+</style>
+<div class="page-wrapper wrapper_page">
+    <div class="page-breadcrumb bg-white white_bg">
+        <div class="tyre-list-main-div">
+            <div class="my-3">
+                <div class="heading-main-div-area py-4 bg-white">
+                    <h2 class="text-center p-0 m-0">Settings</h2>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid fluid_container responsive_container white_bg">
+            <div class="row responsive_row">
+                <div class="col-lg-12">
+                    <div class="setting-tab-detail-main-area main_area_tab_setting">
+                        <div class="setting-tab-main-area tab_setting_main_area">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active tab-btn link_nav" id="manage-profile-tab"
+                                        data-bs-toggle="tab" data-bs-target="#manage-profile" type="button" role="tab"
+                                        aria-controls="manage-profile" aria-selected="false"><i class="fa fa-user"
+                                            aria-hidden="true">
+                                        </i><span class="responsive_icon">Manage Profile</span></button>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="manage-profile" role="tabpanel"
+                                aria-labelledby="manage-profile-tab">
+                                {% if messages %}
+                                {% for message in messages %}
+                                <span class="{{message.tags}}">{{message}}</span>
+                                {% endfor %}
+                                {% endif %}
+                                <span type="text" id="message" class="info" contenteditable="false"></span>
+                                <div class="row">
+                                    <div class="col-lg-5">
+                                        <div class="setting-tab-heading-area">
+                                            <h2>Personal Info</h2>
+                                        </div>
+                                        <div class="setting-profile-detail-main-area responsive_width">
+                                            <div class="user-detail-main-area">
+                                                <div class="row space_left">
+                                                    <div class="col-lg-6 col-4 col_lg_six">
+                                                        <div class="personal-information-heading">
+                                                            <h2>Username</h2>
+                                                            <h2>Email</h2>
+                                                            <h2>Name</h2>
+                                                            <h2>Surname</h2>
+                                                            <h2>Phone</h2>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 col-8 col_lg_six">
+                                                        <div class="personal-information-details">
+                                                            <p>{{request.user.username}}</p>
+                                                            <p>{{request.user.email}}</p>
+                                                            <p>{{request.user.first_name}}</p>
+                                                            <p>{{request.user.last_name}}</p>
+                                                            <p>{{request.user.phone}}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="setting-tab-heading-area">
+                                            <h2>Personal Details</h2>
+                                        </div>
+                                        <div class="setting-profile-detail-input-area">
+                                            <form class="contact-form-main-area" action="{% url 'setting' %}"
+                                                method="POST" id="paymentFrm">
+                                                {% csrf_token %}
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label>Username</label>
+                                                            <input type="text" class="form-control field change_border"
+                                                                name="username" placeholder="Enter Username"
+                                                                autofocus="" id="username"
+                                                                value="{{request.user.username}}">
+                                                            <i class="fas fa-check-circle"></i>
+                                                            <i class="fas fa-exclamation-circle"></i>
+                                                            <small>Error message</small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label>Email</label>
+                                                            <input type="email" class="form-control field change_border"
+                                                                name="email" placeholder="Enter Email" autofocus=""
+                                                                id="email" value="{{request.user.email}}">
+                                                            <i class="fas fa-check-circle"></i>
+                                                            <i class="fas fa-exclamation-circle"></i>
+                                                            <small>Error message</small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label>First Name</label>
+                                                            <input type="text" class="form-control field change_border"
+                                                                name="first_name" placeholder="Enter First Name"
+                                                                autofocus="" id="first_name"
+                                                                value="{{request.user.first_name}}">
+                                                            <i class="fas fa-check-circle"></i>
+                                                            <i class="fas fa-exclamation-circle"></i>
+                                                            <small>Error message</small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label>Last Name</label>
+                                                            <input type="text" class="form-control field change_border"
+                                                                name="last_name" placeholder="Enter Last Name"
+                                                                autofocus="" id="last_name"
+                                                                value="{{request.user.last_name}}">
+                                                            <i class="fas fa-check-circle"></i>
+                                                            <i class="fas fa-exclamation-circle"></i>
+                                                            <small>Error message</small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label>Phone</label>
+                                                            <input type="number" min="0" max="99999999999999" class="form-control field change_border" name="phone" placeholder="Enter Phone With Country Code"
+                                                                autofocus="" id="phone" value="{{request.user.phone}}" onkeypress="if( isNaN( String.fromCharCode(event.keyCode))) return false;">
+                                                            <i class="fas fa-check-circle"></i>
+                                                            <i class="fas fa-exclamation-circle"></i>
+                                                            <small>Error message</small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="contact-form-submint-btn-area">
+                                                            <button type="submit"
+                                                                class="contact-form-submint-btn download-invoice-btn">Submit</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    const form = document.getElementById('paymentFrm');
+    const username = document.getElementById('username');
+    const first_name = document.getElementById('first_name');
+    const last_name = document.getElementById('last_name');
+    const email = document.getElementById('email');
+    const phone = document.getElementById('phone');
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        var check_valid = checkInputs();
+        if (check_valid == true) {
+            $.ajax({
+                type: "POST",
+                url: "{% url 'setting' %}",
+                data: {
+                    username: $('#username').val(),
+                    first_name: $('#first_name').val(),
+                    last_name: $('#last_name').val(),
+                    email: $('#email').val(),
+                    phone: $('#phone').val(),
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                    dataType: "json",
+
+                },
+                success: function (data) {
+                    //$('#message').html(data.message)
+                    location.reload();
+                },
+                failure: function () {
+                }
+            });
+        }
+    });
+
+    function checkInputs() {
+        const usernameValue = username.value.trim();
+        const first_nameValue = first_name.value.trim();
+        const last_nameValue = last_name.value.trim();
+        const emailValue = email.value.trim();
+        const phoneValue = phone.value.trim();
+
+        var valid = true;
+
+        if (usernameValue === '') {
+            setErrorFor(username, 'Username cannot be blank');
+            valid = false;
+        } else if (usernameValue.length < 4 || usernameValue.length > 16) {
+            setErrorFor(username, 'Username must have 4 to 15 character');
+            valid = false;
+        } else {
+            setSuccessFor(username);
+        }
+
+        if (first_nameValue === '') {
+            setErrorFor(first_name, 'Name cannot be blank');
+            valid = false;
+        } else if (first_nameValue.length < 4 || first_nameValue.length > 16) {
+            setErrorFor(first_name, 'Name must have 4 to 15 character');
+            valid = false;
+        } else {
+            setSuccessFor(first_name);
+        }
+
+        if (last_nameValue === '') {
+            setErrorFor(last_name, 'Surame cannot be blank');
+            valid = false;
+        } else if (last_nameValue.length < 4 || last_nameValue.length > 16) {
+            setErrorFor(last_name, 'Surname must have 4 to 15 character');
+            valid = false;
+        } else {
+            setSuccessFor(last_name);
+        }
+
+        if (emailValue === '') {
+            setErrorFor(email, 'Email cannot be blank');
+            valid = false;
+        } else if (!isEmail(emailValue)) {
+            setErrorFor(email, 'Not a valid email');
+            valid = false;
+        } else {
+            setSuccessFor(email);
+        }
+
+        if (phoneValue === '') {
+            setErrorFor(phone, 'Phone Number cannot be blank');
+            valid = false;
+        } else if (phoneValue.length < 4 || phoneValue.length > 15) {
+            setErrorFor(phone, 'Phone must have 4 to 15 character');
+            valid = false;
+        //} else if (!isPhone(phoneValue)) {
+        //    setErrorFor(phone, 'Enter Valid Phone With Country Code');
+        //    valid = false;
+        } else {
+            setSuccessFor(phone);
+        }
+
+        return valid;
+    }
+
+    function setErrorFor(input, message) {
+        const formControl = input.parentElement;
+        const small = formControl.querySelector('small');
+        formControl.className = 'form-group error';
+        small.innerText = message;
+    }
+
+    function setSuccessFor(input) {
+        const formControl = input.parentElement;
+        formControl.className = 'form-group success';
+    }
+
+    function isEmail(email) {
+        return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+    }
+    //function isPhone(phone) {
+    //    return /^\+([0-9]{1,3})\)?([0-9]{8,12})$/.test(phone);
+    //}
+
+</script>
+{% endblock content %}

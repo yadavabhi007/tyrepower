@@ -1,0 +1,30 @@
+{% extends "admin/change_list.html" %}
+{% block object-tools %}
+<div class="col-md-6">
+    <span class="float-sm-right">
+        <a href="#" class="btn btn-success btn-sm text-light ml-2" data-toggle="collapse"
+            data-target="#changelist-filter" aria-expanded="false" aria-controls="changelist-filter">
+            <i class="fas fa-filter"></i>
+            Filter
+        </a>
+    </span>
+    <span class="float-sm-right">
+        <a href="/admin/tyrepower_app/proxytyre/import/" class="btn btn-success btn-sm text-light ml-2">Import</a>
+    </span>
+    <span class="float-sm-right">
+        <a href="/admin/tyrepower_app/proxytyre/export/?" class="btn btn-success btn-sm text-light ml-2">Export</a>
+    </span>
+    <span class="float-sm-right">
+        <a href="/admin/tyrepower_app/proxytyre/add/" class="btn btn-primary btn-sm text-light">
+            <i class="fas fa-plus"></i>
+            Add proxy tyre
+        </a>
+    </span>
+    <span class="float-sm-right">
+        <a href="{% url 'upload-stock-xlsx' %}" class="btn btn-success btn-sm text-light ml-2">Stock Update Excel</a>
+    </span>
+    <span class="float-sm-right">
+        <a href="{% url 'upload-xlsx' %}" class="btn btn-success btn-sm text-light ml-2">Fresh Import Excel</a>
+    </span>
+</div>
+{% endblock %}

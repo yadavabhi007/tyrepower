@@ -1,0 +1,147 @@
+<style>
+    .product_detail_offer_image_area{
+        height: 70px;
+        width: 140px;
+    }
+
+    .product_detail_offer_image_area img{
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+</style>
+
+{% extends 'tyrepower_app/base.html' %}
+{% block content %}
+{% load static %}
+
+<div class="page-wrapper wrapper_page">
+    <div class="page-breadcrumb bg-white white_bg">
+        <div class="search-stock-main-div">
+            <div class="my-4">
+                <div class="heading-main-div-area py-4 bg-white">
+                    <h2 class="text-center p-0 m-0">Product Detail....</h2>
+                </div>
+            </div>
+        </div>
+        <div class="card-wrapper">
+            <div class="card">
+                <!-- card left -->
+                <div class="product-imgs">
+                    <div class="img-display">
+                        <div class="img-showcase">
+                            {% if tyre.logo %}
+                            <img src="{{tyre.logo.url}}" alt="TyrePower">
+                            {% else %}
+                            <img src="{% static 'tyrepower_app/images/TyrePowerLogo.png' %}" alt="TyrePower">
+                            {% endif %}
+                            <!-- {% if tyre.image_i %}
+                            <img src="{{tyre.image_i.url}}" alt="image">
+                            {% endif %}
+                            {% if tyre.image_ii %}
+                            <img src="{{tyre.image_ii.url}}" alt="image">
+                            {% endif %}
+                            {% if tyre.image_iii %}
+                            <img src="{{tyre.image_iii.url}}" alt="image">
+                            {% endif %} -->
+                        </div>
+                    </div>
+                    <!-- <div class="img-select">
+                        <div class="img-item">
+                            <a href="#" data-id="1">
+                                {% if tyre.image %}
+                                <img src="{{tyre.image.url}}" width="100" height="100" alt="image">
+                                {% endif %}
+                            </a>
+                        </div>
+                        <div class="img-item">
+                            <a href="#" data-id="2">
+                                {% if tyre.image_i %}
+                                <img src="{{tyre.image_i.url}}" width="100" height="100" alt="image">
+                                {% endif %}
+                            </a>
+                        </div>
+                        <div class="img-item">
+                            <a href="#" data-id="3">
+                                {% if tyre.image_ii %}
+                                <img src="{{tyre.image_ii.url}}" width="100" height="100" alt="image">
+                                {% endif %}
+                            </a>
+                        </div>
+                        <div class="img-item">
+                            <a href="#" data-id="4">
+                                {% if tyre.image_iii %}
+                                <img src="{{tyre.image_iii.url}}" width="100" height="100" alt="image">
+                                {% endif %}
+                            </a>
+                        </div>
+                    </div> -->
+                </div>
+                <!-- card right -->
+                <div class="product-content">
+                    <h2 class="product-title">{{tyre.name}}</h2>
+                    <a class="product-link">{{tyre.brand}}</a>
+                    {% if tyre.offer %}
+                    <div class="product_detail_offer_image_area">
+                        <img src="{% static 'tyrepower_app/images/specialoffer.png' %}" alt="Image Not Found">
+                    </div>
+                    {% endif %}
+                    <div class="product-price">
+                        {% if tyre.list_price %}
+                        <p class="last-price">List of Price: <span>R {{tyre.list_price}}</span></p>
+                        {% endif %}
+                        <p class="new-price">Net Price: <span>R {{tyre.net_price}}</span></p>
+                    </div>
+                    <div class="product-detail">
+                        <h2>About The Item: </h2>
+                        <p>{{tyre.description}}</p>
+                        <ul>
+                            <li>Code: <span>{{tyre.code}}</span></li>
+                            <li>Size: <span>{{tyre.size}}</span></li>
+                            {% if tyre.weight %}
+                            <li>Weight: <span>{{tyre.weight}}</span></li>
+                            {% endif %}
+                            {% if tyre.oe_need %}
+                            <li>OE Need: <span>{{tyre.oe_need}}</span></li>
+                            {% endif %}
+                            <li>Stock: <span>{{stock}}</span></li>
+                        </ul>
+                    </div>
+                    <form class="contact-form-main-area" action="{% url 'add-to-cart' tyre.id %}" method="post"
+                        id="paymentFrm">
+                        {% csrf_token %}
+                        <div class="purchase-info">
+                            <input type="number" min="1" value="1" max="499" name="total_number" required="">
+                            <button type="submit" class="btn">
+                                Add to Cart <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const imgs = document.querySelectorAll('.img-select a');
+    const imgBtns = [...imgs];
+    let imgId = 1;
+
+    imgBtns.forEach((imgItem) => {
+        imgItem.addEventListener('click', (event) => {
+            event.preventDefault();
+            imgId = imgItem.dataset.id;
+            slideImage();
+        });
+    });
+
+    function slideImage() {
+        const displayWidth = document.querySelector('.img-showcase img:first-child').clientWidth;
+        document.querySelector('.img-showcase').style.transform = `translateX(${- (imgId - 1) * displayWidth}px)`;
+    }
+
+    window.addEventListener('resize', slideImage);
+</script>
+
+{% endblock content %}

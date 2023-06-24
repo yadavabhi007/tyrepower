@@ -1,0 +1,49 @@
+{% load static mathfilters %}
+<div class="page-wrapper wrapper_page" style="min-height: 250px;">
+    <div class="container-fluid fluid_container responsive_container pt-3 white_bg">
+        <div class="row responsive_row">
+            <table style="border-collapse: collapse;  width:100%;">
+                <tr style="border: 1px solid #dddddd;">
+                    <th colspan="2" style="text-align:center; padding:20px 0px 20px 0px; font-size: 20px;">
+                        Price and Stocks Reports from {{start_date}} to {{end_date}}.
+                    </th>
+                </tr>
+                <tr style="border: 1px solid #dddddd;">
+                    <td style="font-weight: 600; padding:15px 0px 15px 10px; border: 1px solid #dddddd; width: 50%">Pending Orders Price</td>
+                    <td style="border: 1px solid #dddddd; padding: 0px 0px 0px 10px;">R {{pending_prices|default:'0'}}</td>
+                </tr>
+                <tr style="border: 1px solid #dddddd;">
+                    <td style="font-weight: 600; padding:15px 0px 15px 10px; border: 1px solid #dddddd;">Pending Orders Stocks</td>
+                    <td style="border: 1px solid #dddddd; padding: 0px 0px 0px 10px;">{{pending_stocks|default:'0'}}</td>
+                </tr>
+                <tr style="border: 1px solid #dddddd;">
+                    <td style="font-weight: 600; padding:15px 0px 15px 10px; border: 1px solid #dddddd;">Delivered Orders Price</td>
+                    <td style="border: 1px solid #dddddd; padding: 0px 0px 0px 10px;">R {{delivered_prices|default:'0'}}</td>
+                </tr>
+                <tr style="border: 1px solid #dddddd;">
+                    <td style="font-weight: 600; padding:15px 0px 15px 10px; border: 1px solid #dddddd;">Delivered Orders
+                        Stocks</td>
+                    <td style="border: 1px solid #dddddd; padding: 0px 0px 0px 10px;">{{delivered_stocks|default:'0'}}</td>
+                </tr>
+                <tr style="border: 1px solid #dddddd;">
+                    <td style="font-weight: 600; padding:15px 0px 15px 10px; border: 1px solid #dddddd;">Picked
+                        By Self Orders Price</td>
+                    <td style="border: 1px solid #dddddd; padding: 0px 0px 0px 10px;">R {{picked_by_self_prices|default:'0'}}</td>
+                </tr>
+                <tr style="border: 1px solid #dddddd;">
+                    <td style="font-weight: 600; padding:15px 0px 15px 10px; border: 1px solid #dddddd;">Picked
+                        By Self Orders Stocks</td>
+                    <td style="border: 1px solid #dddddd; padding: 0px 0px 0px 10px;">{{picked_by_self_stocks|default:'0'}}</td>
+                </tr>
+                <tr style="border: 1px solid #dddddd;">
+                    <td style="font-weight: 600; padding:15px 0px 15px 10px; border: 1px solid #dddddd;">Canceled Orders Price</td>
+                    <td style="border: 1px solid #dddddd; padding: 0px 0px 0px 10px;">R {{canceled_prices|default:'0'}}</td>
+                </tr>
+                <tr style="border: 1px solid #dddddd;">
+                    <td style="font-weight: 600; padding:15px 0px 15px 10px; border: 1px solid #dddddd;">Canceled Orders Stocks</td>
+                    <td style="border: 1px solid #dddddd; padding: 0px 0px 0px 10px;">{{canceled_stocks|default:'0'}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

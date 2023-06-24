@@ -1,0 +1,256 @@
+{% extends 'tyrepower_app/base.html' %}
+{% block content %}
+{% load static %}
+
+<style>
+    .info {
+        color: green;
+        margin-left: 13px;
+        display: block;
+        font-size: 20px;
+    }
+
+    .error {
+        color: #e0313c;
+        margin-left: 13px;
+        padding-top: 16px !important;
+        display: block;
+        font-size: 20px;
+    }
+
+    .cart-icon-buttons {
+        border: none;
+        outline: none;
+    }
+
+    .cart-icon-buttons:focus {
+        outline: none;
+    }
+</style>
+
+
+<div class="page-wrapper wrapper_page">
+    <div class="page-breadcrumb bg-white white_bg">
+        <div class="search-stock-main-div">
+            <div class="mt-3 mb-1">
+                <div class="heading-main-div-area py-4 bg-white">
+                    <h2 class="text-center p-0 m-0">Your Cart</h2>
+                </div>
+            </div>
+        </div>
+        {% if messages %}
+        {% for message in messages %}
+        <span class="{{message.tags}}">{{message}}</span>
+        {% endfor %}
+        {% endif %}
+        <span type="text" id="message" class="info" style="height: 23px" contenteditable="false"></span>
+        <div class="wrap">
+            <div class="wrap-inner-area">
+                <header class="cart-header cf">
+                    <strong>Items in Your Cart</strong><br><br>
+                    
+                </header>
+                <div class="cart-table">
+                    <ul>
+                        {% if carts %}
+                        {% for cart in carts %}
+                        <li class="item" style="list-style: none">
+                            <div class="item-main cf">
+                                <div class="item-block ib-info cf"> 
+                                    {% if cart.tyre.logo %}
+                                    <img class="order-history-image" src="{{cart.tyre.logo.url}}" alt="TyrePower">
+                                    {% else %}
+                                    <img class="order-history-image" src="../../static/tyrepower_app/images/TyrePowerLogo.png" alt="TyrePower">
+                                    {% endif %}
+                                    <div class="ib-info-meta">
+                                        <span class="title"><strong>Name</strong>: {{cart.tyre.name}}</span>
+                                        <span class="itemno"><strong>Code</strong>: {{cart.tyre.code}}</span>
+                                        <span class="styles">
+                                            <span><strong>Brand</strong>: {{cart.tyre.brand}}</span>
+                                            <span><strong>Size</strong>: {{cart.tyre.size}}</span>
+                                            {% if cart.tyre.model %}
+                                            <span><strong>Model</strong>: {{cart.tyre.model}}</span><br>
+                                            {% endif %}
+                                            <div class="d-flex more-details">
+                                                <i class="fa fa-info-circle pe-1" aria-hidden="true"></i>
+                                                <h6 class="m-0"><a class="check-more-details"
+                                                        href="{% url 'tyre-detail' cart.tyre.id %}">Product Details</a>
+                                                </h6>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="item-block ib-qty">
+                                    <form class="contact-form-main-area" action="" method="post" id="paymentFrm">
+                                        {% csrf_token %}
+                                        <i class="fa fa-minus item-cart-increase-decrease decrease" aria-hidden="true"
+                                            onclick="decrease(id,'{{cart.id}}')"></i>
+                                        <input class="no-spin" type="number" min="1" max="499" name="cart_value"
+                                            required="" value="{{cart.total_number}}"
+                                            onclick="cartValueID(id,'{{cart.id}}')" disabled="" />
+                                        <i class="fa fa-plus item-cart-increase-decrease increase" aria-hidden="true"
+                                            onclick="increase(id,'{{cart.id}}')"></i>
+                                        <span class="price"><span>x</span>R {{cart.tyre.net_price}}</span>
+                                    </form>
+                                </div>
+                                <div class="item-block ib-total-price">
+                                    <Label>R</Label>
+                                    <input style="border: none; width: 180px;" class="tp-price" id="new_total_price{{cart.id}}"
+                                        type="number" required="" value="{{cart.total_price}}" disabled="" />
+                                </div>
+                            </div>
+                            <div class="cart-btn-info-area">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div class="item-foot cf">
+                                    <button type="button" class="btn_submit" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModalDel{{cart.id}}">
+                                        Delete <i class="fas fa-trash ms-2"></i>
+                                    </button>
+                                    <div class="modal fade" id="exampleModalDel{{cart.id}}" tabindex="-1"
+                                        aria-labelledby="exampleModalLabelDel{{cart.id}}" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content innerDiv-model-dialog">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabelDel{{cart.id}}">Delete
+                                                    </h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <hr class="p-0 m-0">
+                                                <div class="modal-body">
+                                                    Are You Sure, Really Want To Delete ?
+                                                </div>
+                                                <hr class="p-0 m-0">
+                                                <div class="modal-footer">
+                                                    <button type="button" class="download-invoice-btn"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                    <a href="{% url 'delete-item' cart.id %}"><button type="button"
+                                                            class="download-invoice-btn">Delete</button></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item-block ib-total-stock">
+                                    {% if cart.tyre.total is 0 %}
+                                    <p class="m-0 available-stock-value">Out Of Stock</p>
+                                    {% else %}
+                                    <p class="m-0 available-stock-value">Total {{cart.tyre.total}} in Stock Currently
+                                    </p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        </li>
+                        {% endfor %}
+                        {% else %}
+                        <div class="col-lg-12">
+                            <div class="text-center">
+                                <h1 class="py-3">No Products</h1>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </ul>
+                    
+                </div>
+                <div class="place-holder-btn-info">
+                    {% if carts %}
+                    <a href="{% url 'add-to-my-order' %}">
+                        <button type="submit" class="btn_submit">
+                            Place Order <i class="fas fa-shopping-bag ms-2"></i>
+                        </button>
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+    const selectAllInputs = document.querySelectorAll('.no-spin');
+    const decreaseButton = document.querySelectorAll('.decrease');
+    const increaseButton = document.querySelectorAll('.increase');
+
+    selectAllInputs.forEach((element, index) => {
+        element.setAttribute("id", `no-spin-${index}`)
+    });
+
+    decreaseButton.forEach((element, index) => {
+        element.setAttribute("id", `decrease-${index}`)
+    });
+
+    increaseButton.forEach((element, index) => {
+        element.setAttribute("id", `increase-${index}`)
+    });
+
+    const decrease = (id, cart) => {
+        const getIdNumber = id.split('-')[1];
+        if (document.querySelector(`#no-spin-${getIdNumber}`).value > 1) {
+            document.querySelector(`#no-spin-${getIdNumber}`).value = parseInt(document.querySelector(`#no-spin-${getIdNumber}`).value - 1);
+        }
+
+        let selectedInputField = document.querySelector(`#no-spin-${getIdNumber}`);
+        const currentInputValue = document.querySelector(`#no-spin-${getIdNumber}`).value;
+
+        $.ajax({
+            method: "POST",
+            url: "/cart-value/" + cart + "/",
+            data: {
+                cartValue: currentInputValue,
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                dataType: "json",
+            },
+            success: function (data) {
+                $('#message').html(data.message)
+                console.log(data.new_total_price)
+                location.reload()
+                document.getElementById("new_total_price{{cart.id}}").value = data.new_total_price;
+            },
+            failure: function () {
+            }
+        });
+
+        setTimeout(() => {
+            const updateCartMessage = document.getElementById('message').innerHTML = "";
+        }, "500");
+    }
+
+    const increase = (id, cart) => {
+        const getIdNumber = id.split('-')[1];
+        if (document.querySelector(`#no-spin-${getIdNumber}`).value < 499) {
+            document.querySelector(`#no-spin-${getIdNumber}`).value = parseInt(document.querySelector(`#no-spin-${getIdNumber}`).value) + 1;
+        }
+
+        let selectedInputField = document.querySelector(`#no-spin-${getIdNumber}`);
+        const currentInputValue = document.querySelector(`#no-spin-${getIdNumber}`).value;
+
+        $.ajax({
+            method: "POST",
+            url: "/cart-value/" + cart + "/",
+            data: {
+                cartValue: currentInputValue,
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                dataType: "json",
+            },
+            success: function (data) {
+                $('#message').html(data.message)
+                console.log(data.new_total_price)
+                location.reload()
+                document.getElementById("new_total_price{{cart.id}}").value = data.new_total_price;
+
+            },
+            failure: function () {
+            }
+        });
+
+        setTimeout(() => {
+            const updateCartMessage = document.getElementById('message').innerHTML = "";
+        }, "500");
+    }
+
+</script>
+
+{% endblock content %}

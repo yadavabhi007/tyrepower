@@ -1,0 +1,98 @@
+{% load i18n admin_urls adminlte_helpers static admin_list %}
+{% block extrahead %}
+
+<style>
+  .card {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  }
+
+  .table-main-upper-div-area .dataTables_wrapper .row:first-child {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .actions {
+    padding: 0px 5px !important;
+  }
+
+  .actions label {
+    color: #151514;
+    margin-bottom: 0px;
+  }
+
+  .actions select {
+    padding: 3px 10px;
+  }
+
+  .actions button {
+    border: none;
+    padding: 2px 15px !important;
+    background: #151514;
+    color: #fff;
+    border-radius: 5px;
+    transition: 0.5s;
+  }
+
+  .actions button:hover {
+    background-color: #e0313c;
+  }
+
+  .actions .action-counter {
+    color: #e0313c;
+    font-weight: 500;
+    font-size: 15px !important;
+  }
+
+  .dataTables_filter label{
+    margin-bottom: 0px;
+  }
+</style>
+
+<link rel="stylesheet" type="text/css"
+  href="{% static 'admin-lte/plugins/datatables-bs4/css/dataTables.bootstrap4.css' %}">
+{% endblock %}
+
+{% if result_hidden_fields %}
+<div class="hiddenfields">{# DIV for HTML validation #}
+  {% for item in result_hidden_fields %}{{ item }}{% endfor %}
+</div>
+{% endif %}
+{% if results %}
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body table-responsive table-main-upper-div-area">
+        <table id="result_list" class="table table-hover table-striped  table-head-fixed">
+          <thead>
+            <tr>
+              {% for header in result_headers %}
+              <th>
+                <span>{{ header.text|capfirst }}</span>
+              </th>{% endfor %}
+            </tr>
+          </thead>
+          <tbody>
+            {% for result in results %}
+            {% if result.form.non_field_errors %}
+            <tr>
+              <td colspan="{{ result|length }}">{{ result.form.non_field_errors }}</td>
+            </tr>
+            {% endif %}
+            <tr class="{% cycle 'row1' 'row2' %}">{% for item in result %}{{ item }}{% endfor %}</tr>
+            {% endfor %}
+          </tbody>
+          <tfoot>
+            <tr>
+              {% for header in result_headers %}
+              <th>
+                <span>{{ header.text|capfirst }}</span>
+              </th>{% endfor %}
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endif %}

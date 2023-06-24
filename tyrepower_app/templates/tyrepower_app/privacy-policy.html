@@ -1,0 +1,28 @@
+{% extends 'tyrepower_app/base.html' %}
+{% block content %}
+{% load static %}
+
+<div class="page-wrapper wrapper_page">
+    <div class="page-breadcrumb bg-white white_bg">
+        <div class="tyre-list-main-div">
+            <div class="my-3">
+                <div class="heading-main-div-area py-4 bg-white">
+                    <h2 class="text-center p-0 m-0">Privacy Policies</h2>
+                </div>
+            </div>
+            <div class="contact-detail-main-area main_area_contact_detail">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="terms-conditions-detail-area">
+                            {% for data in privacy_policy%}
+                            <h3>{{data.heading}}</h3>
+                            {{data.content | linebreaks}}<br>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

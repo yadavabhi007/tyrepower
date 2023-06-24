@@ -1,0 +1,73 @@
+{% load static mathfilters %}
+<div class="page-wrapper wrapper_page" style="min-height: 250px;">
+    <div class="container-fluid fluid_container responsive_container pt-3 white_bg">
+        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; margin-right: -7.5px; margin-left: -7.5px" class="responsive_row">
+            <div class="setting-tab-detail-main-area main_area_tab_setting" style="flex: 0 0 49%; max-width: 49%">
+                <h3 style="border: 1px solid gray; padding: 15px; color:#333536; border-radius: 3px;">Top Search Reports from {{search_start_date}} to
+                    {{search_end_date}}.</h3>
+                <div class="tab-content" style="border: 1px solid gray; border-radius: 3px;" id="myTabContent">
+                    <div class="tab-pane fade show active" id="manage-profile" role="tabpanel"
+                        aria-labelledby="manage-profile-tab">
+                        <div class="manage-admins-main-area">
+                            <div class="manage-admins-table-area">
+                                <table style="width: 100%; margin-bottom: 1rem; color: #212529; background-color: transparent; border-collapse: collapse;" id="example1">
+                                    <thead> 
+                                        <tr>
+                                            <th style="padding: 0.75rem; vertical-align: bottom; border-bottom: 2px solid #dee2e6">Sr No</th>
+                                            <th style="padding: 0.75rem; vertical-align: bottom; border-bottom: 2px solid #dee2e6">Searched Word</th>
+                                            <th style="padding: 0.75rem; vertical-align: bottom; border-bottom: 2px solid #dee2e6">Total Searches</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% if words %}
+                                        {% for word in words %}
+                                        <tr>
+                                            <td style="text-align: center; padding: 0.75rem; vertical-align: top; border-top: 1px solid #dee2e6">{{forloop.counter}}</td>
+                                            <td style="text-align: center; padding: 0.75rem; vertical-align: top; border-top: 1px solid #dee2e6">{{word.word|default:''}}</td>
+                                            <td style="text-align: center; padding: 0.75rem; vertical-align: top; border-top: 1px solid #dee2e6">{{word.count|default:''}}</td>
+                                        </tr>
+                                        {% endfor %}
+                                        {% endif %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="setting-tab-detail-main-area main_area_tab_setting" style="flex: 0 0 49%; max-width: 49%">
+                <h3 style="border: 1px solid gray; padding: 15px; color:#333536; border-radius: 3px;">Top Added To Carts Reports from {{search_start_date}} to
+                    {{search_end_date}}.</h3>
+                <div class="tab-content" style="border: 1px solid gray; border-radius: 3px;" id="myTabContent">
+                    <div class="tab-pane fade show active" id="manage-profile" role="tabpanel"
+                        aria-labelledby="manage-profile-tab">
+                        <div class="manage-admins-main-area">
+                            <div class="manage-admins-table-area">
+                                <table style="width: 100%; margin-bottom: 1rem; color: #212529; background-color: transparent; border-collapse: collapse;" id="example1">
+                                    <thead>
+                                        <tr>
+                                            <th style="padding: 0.75rem; vertical-align: bottom; border-bottom: 2px solid #dee2e6">Sr No</th>
+                                            <th style="padding: 0.75rem; vertical-align: bottom; border-bottom: 2px solid #dee2e6">Carts Tyres</th>
+                                            <th style="padding: 0.75rem; vertical-align: bottom; border-bottom: 2px solid #dee2e6">Total Added</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% if carts %}
+                                        {% for cart in carts %}
+                                        <tr>
+                                            <td style="text-align: center; padding: 0.75rem; vertical-align: top; border-top: 1px solid #dee2e6">{{forloop.counter}}</td>
+                                            <td style="text-align: center; padding: 0.75rem; vertical-align: top; border-top: 1px solid #dee2e6">{{cart.tyre__code|default:''}}</td>
+                                            <td style="text-align: center; padding: 0.75rem; vertical-align: top; border-top: 1px solid #dee2e6">{{cart.count|default:''}}</td>
+                                        </tr>
+                                        {% endfor %}
+                                        {% endif %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

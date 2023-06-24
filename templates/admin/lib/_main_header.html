@@ -1,0 +1,74 @@
+<style>
+  .admin-dropdown{
+    background-color: #585858;
+    border: 2px solid #fff;
+    border-radius: 10px;
+  }
+
+  .name-since{
+    background-color: #f7f7f7;
+    border-radius: 5px;
+    font-weight: 600;
+  }
+
+  .logout-dropdown-btn{
+    background-color: #151514 !important;
+    padding: 7px 20px !important;
+    text-align: center !important;
+    transition: 0.5s !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 20px #eee !important;
+    border-radius: 5px !important;
+    outline: none !important;
+    border: none !important;
+  }
+
+  .logout-dropdown-btn:hover{
+    background-color: #e0313c !important;
+    color: #fff !important;
+    outline: none !important;
+    border: none !important;
+  }
+
+  .navbar-nav>.user-menu>.dropdown-menu>.user-footer{
+    border-radius: 5px;
+  }
+</style>
+
+{% extends 'adminlte/lib/_main_header.html' %}
+{% load adminlte_helpers i18n %}
+
+{% block header_dropdowns %}
+{% block user_info %}
+            {% if request.user.is_authenticated %}
+            <li class="nav-item dropdown user-menu">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                  <img src="{%avatar_url 128 %}" class="user-image img-circle elevation-2" alt="User Image">
+                  <span class="d-none d-md-inline">{% firstof request.user.username request.user.first_name request.user.name %}</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="top: 58px; border-radius: 5px;">
+                  <!-- User image -->
+                  <li class="user-header admin-dropdown">
+                    <img src="{%avatar_url size=160 %}" class="img-circle elevation-2" alt="User Image">
+                    <p class="name-since">
+                        {% firstof request.user.username request.user.first_name request.user.name %}
+                      <small>Member since : {{ request.user.created_at }}</small>
+                    </p>
+                  </li>
+                  <!-- Menu Footer-->
+                  <li class="user-footer">
+                    <a href="{% block change_password_url %}{% url 'admin:password_change' %}{% endblock %}" class="logout-dropdown-btn float-left">{% trans 'Change Password'%}</a>
+                    <a href="{% url 'admin:logout' %}" class="logout-dropdown-btn float-right" onclick="setActiveDashboard()">{% trans 'Log Out'%}<a>
+                  </li>
+                </ul>
+              </li>
+            {% endif %}
+            {% endblock user_info %}
+            <script>
+              const setActiveDashboard = () => {
+                sessionStorage.setItem("elementId", 'sidebar-item-0');
+              }
+
+            </script>
+
+{% endblock header_dropdowns %}

@@ -1,0 +1,90 @@
+<style>
+    .admin-logo img {
+        height: 100%;
+        width: 60%;
+        object-fit: cover;
+    }
+
+    .admin-logo {
+        height: 100px;
+        width: 100px;
+    }
+
+    .login-logo a {
+        font-size: 25px;
+        font-weight: 500;
+        color: #495057 !important;
+    }
+
+    .admin-logo {
+        margin: auto;
+    }
+
+    .login-box, .register-box{
+        width: 450px !important;
+    }
+
+    .login-box{
+        background-color: #cdcdcd !important;
+        opacity: 1 !important;
+    }
+
+    .btn-flat {
+        background-color: #151514 !important;
+        padding: 10px 35px !important;
+        text-align: center !important;
+        transition: 0.5s !important;
+        background-size: 200% auto !important;
+        color: white !important;
+        box-shadow: 0 0 20px #eee !important;
+        border-radius: 5px !important;
+        display: inline-block !important;
+        outline: none !important;
+        border: none !important;
+    }
+    
+    .btn-flat:hover {
+        background-color: #e0313c !important;
+        color: #fff !important;
+        outline: none !important;
+        border: none !important;
+    }
+</style>
+
+{% load i18n static %}
+<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}
+<html lang="{{ LANGUAGE_CODE|default:" en-us" }}" {% if LANGUAGE_BIDI %}dir="rtl" {% endif %}>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{% block title %}{% endblock %}</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="{% static 'admin-lte/plugins/fontawesome-free/css/fontawesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'admin-lte/dist/css/adminlte.min.css' %}">
+</head>
+
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="admin-logo w-100 d-flex align-items-center justify-content-center"> <img src="{% static 'images/TyrePowerLogo.png' %}" alt="logo-img"></div>
+
+        <div class="login-logo">
+            <a href="{% url 'admin:index' %}">{{ site_header|default:_('Django administration') }}</a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="login-box-body">
+            <p class="login-box-msg" style="color: #495057;">Sign in to start your session</p>
+
+            {% block content %}
+            {% block object-tools %}{% endblock %}
+            {{ content }}
+            {% endblock %}
+        </div>
+
+        <script src="{% static 'admin-lte/plugins/jquery/jquery.min.js' %}"></script>
+        <script src="{% static 'admin-lte/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+
+</body>
+
+</html>

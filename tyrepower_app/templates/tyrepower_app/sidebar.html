@@ -1,0 +1,91 @@
+<aside class="left-sidebar left_aside" data-sidebarbg="skin6" id="addWidth">
+    <div class="scroll-sidebar">
+        <nav class="sidebar-nav">
+            <ul id="sidebarnav" class="nav_bar_side">
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link link_sidebar" href="{% url 'tyre' %}"
+                        aria-expanded="false">
+                        <i class="fas fa-solid fa-truck leftside_icon" aria-hidden="true"></i>
+                        <span class="ser hide-menu side-bar-text-area">Tyres</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link link_sidebar"
+                        href="{% url 'my-order' %}" aria-expanded="false">
+                        <i class="fa fa-shopping-bag leftside_icon" aria-hidden="true"></i>
+                        <span class="ser hide-menu side-bar-text-area">My Orders</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link link_sidebar" href="{% url 'setting' %}"
+                        aria-expanded="false">
+                        <i class="fas fa-cog leftside_icon" aria-hidden="true"></i>
+                        <span class="ser hide-menu side-bar-text-area">Settings</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link link_sidebar" href="{% url 'address' %}"
+                        aria-expanded="false">
+                        <i class="fa fa-id-card leftside_icon" aria-hidden="true"></i>
+                        <span class="ser hide-menu side-bar-text-area">My Addresses</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link link_sidebar"
+                        href="{% url 'change-password' %}" aria-expanded="false">
+                        <i class="fas fa-lock leftside_icon" aria-hidden="true"></i>
+                        <span class="ser hide-menu side-bar-text-area">Change Password</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link link_sidebar"
+                        href="{% url 'notifications' %}" aria-expanded="false">
+                        <i class="fa fa-bell leftside_icon"></i>
+                        <span class="ser hide-menu side-bar-text-area">Notifications</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link link_sidebar"
+                        href="{% url 'privacy-policies' %}" aria-expanded="false">
+                        <i class="fas fa-lock leftside_icon"></i>
+                        <span class="ser hide-menu side-bar-text-area">Privacy & Policies</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link link_sidebar"
+                        href="{% url 'terms-and-conditions' %}" aria-expanded="false">
+                        <i class="fas fa-file leftside_icon"></i>
+                        <span class="ser hide-menu side-bar-text-area">Terms & Conditions</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link link_sidebar" aria-expanded="false"
+                        data-bs-toggle="modal" data-bs-target="#SidebarLogout">
+                        <i class="fas fa-power-off leftside_icon"></i>
+                        <span class="ser hide-menu side-bar-text-area">Log Out</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</aside>
+
+<div class="modal fade" id="SidebarLogout" tabindex="-1" aria-labelledby="SidebarLabelLogout" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content innerDiv-model-dialog">
+            <div class="modal-header">
+                <h5 class="modal-title" id="SidebarLabelLogout">Logout</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <hr class="p-0 m-0">
+            <div class="modal-body my-4">
+                Are You Sure, Really Want To Log Out ?
+            </div>
+            <hr class="p-0 m-0">
+            <div class="modal-footer">
+                <button type="button" class="download-invoice-btn" data-bs-dismiss="modal">Close</button>
+                <a href="{% url 'logout' %}"><button type="button" class="download-invoice-btn">Logout</button></a>
+            </div>
+        </div>
+    </div>
+</div>

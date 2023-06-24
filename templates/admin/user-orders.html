@@ -1,0 +1,270 @@
+{% extends "admin/base_site.html" %}
+
+{% block my_title2 %} User Orders {% endblock my_title2 %}
+
+{% block content %}
+
+<style>
+    .info {
+        color: green;
+        margin-left: 22px;
+    }
+
+    .error {
+        color: red;
+        margin-left: 22px;
+    }
+
+    .page-wrapper {
+        background: #edf1f5;
+        position: relative;
+    }
+
+    .page-wrapper>.container-fluid,
+    .page-wrapper>.container-lg,
+    .page-wrapper>.container-md,
+    .page-wrapper>.container-sm,
+    .page-wrapper>.container-xl,
+    .page-wrapper>.container-xxl {
+        padding: 25px;
+        min-height: calc(100vh - 180px);
+    }
+
+    #main-wrapper[data-layout="vertical"][data-sidebartype="full"] .page-wrapper {
+        margin-left: 240px;
+    }
+
+    #main-wrapper[data-layout="vertical"][data-sidebartype="mini-sidebar"] .page-wrapper {
+        margin-left: 65px;
+    }
+
+    .page-wrapper .change_border {
+        border: 2px solid rgb(174, 206, 217);
+        border-radius: 5px;
+        padding: 13px;
+    }
+
+    .page-breadcrumb .page-title {
+        margin-bottom: 0px;
+        font-weight: 700;
+    }
+
+    .page-breadcrumb .breadcrumb {
+        background: 0 0;
+        margin-bottom: 0;
+        padding: 0;
+        margin-top: 8px;
+        font-size: 12px;
+    }
+
+    .page-breadcrumb .title_page {
+        color: #8b6fc0;
+        font-size: 25px;
+        margin-bottom: 15px;
+    }
+
+    .bg-white {
+        background-color: #fff !important;
+    }
+
+    .white_bg {
+        background-color: #eef0f3 !important;
+    }
+
+    .tyre-list-main-div {
+        padding: 0px 12px;
+    }
+
+    .main-order-card {
+        padding: 16px;
+        width: 100%;
+        font-size: 16px;
+        overflow: hidden;
+        transition: box-shadow .1s linear;
+        background-color: #fff;
+        border: 1px solid #dbdbdb;
+        position: relative;
+        cursor: pointer;
+        display: block;
+        box-shadow: 0 0 0 0 rgb(0 0 0 / 15%);
+        margin-bottom: 8px;
+        border-radius: 4px;
+    }
+
+    .main-order-card:hover {
+        z-index: 1;
+        box-shadow: 0 1px 12px 2px #dbdbdb;
+    }
+
+    .my-order-image-area img {
+        height: 80px;
+    }
+
+    .text-center {
+        text-align: center !important;
+    }
+
+    .my-order-product-name-area h6 {
+        margin-bottom: 10px;
+        cursor: pointer;
+        color: #151514;
+        font-weight: 600;
+    }
+
+    .my-order-price {
+        color: #000;
+        font-weight: 500;
+    }
+
+    .my-order-price p {
+        font-weight: 600;
+    }
+
+    .my-order-price span {
+        font-weight: normal;
+        color: #151514;
+    }
+
+    .green-delivered-icon {
+        height: 10px;
+        width: 10px;
+        border-radius: 50%;
+        background-color: none;
+        border: 2px solid #26a541;
+        display: inline-block;
+        margin-right: 8px;
+    }
+
+    .green-delivered-icon {
+        background-color: #26a541;
+        border: 2px solid #26a541;
+    }
+
+    .delivered-date-info {
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .delivered-date-info-other {
+        font-size: 12px;
+        margin-top: 8px;
+    }
+
+    .download-invoice-btn {
+        background-color: #151514 !important;
+        padding: 8px 20px !important;
+        text-align: center;
+        transition: 0.5s;
+        background-size: 200% auto;
+        color: white;
+        box-shadow: 0 0 20px #eee;
+        border-radius: 5px;
+        display: inline-block;
+        outline: none;
+        border: none;
+    }
+
+    .download-invoice-btn:hover {
+        background-color: #e0313c !important;
+        color: #fff;
+        outline: none;
+        border: none;
+    }
+
+    .module ul,
+    .module ol {
+        margin-left: 0rem !important;
+    }
+
+    .page-link {
+        color: #e0313c !important;
+    }
+
+    .page-link:hover {
+        color: #fff !important;
+        background-color: #000000 !important;
+        border-color: #e0313c !important;
+    }
+
+    .pagination-curve {
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+    }
+</style>
+
+<div class="page-wrapper wrapper_page">
+    <div class="page-breadcrumb bg-white white_bg">
+        <div class="">
+            <div class="my-3">
+                <div class="heading-main-div-area py-1 bg-white" style="border-radius: 5px;">
+                    <h2 class="text-center p-0 m-0">{{user.username}} Orders</h2>
+                </div>
+            </div>
+            {% if messages %}
+            {% for message in messages %}
+            <span class="{{message.tags}}">{{message}}</span>
+            {% endfor %}
+            {% endif %}
+            <div class="containor">
+                {% if page_obj %}
+                {% for order in page_obj %}
+                <div class="main-order-card">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6">
+                            <div class="row">
+                                <div class="col-lg-8 my-order-product-name-area">
+                                    <h6>Order ID: <span>{{order.order_id}}</span> </h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 my-order-price">
+                            <p>PO Number: <span>{{order.PO_number}}</span></p>
+                            <p>Price: <span>R {{order.total_price}}</span> </p>
+                        </div>
+                        <div class="col-lg-4">
+                            <div>
+                                <div class="green-delivered-icon"></div>
+                                <span class="delivered-date-info">{{order.status}} on {{order.updated_at}}</span>
+                            </div>
+                            <div class="py-1">
+                                <a href="{% url 'user-invoice' order.id %}"><button class="download-invoice-btn">View
+                                        Invoice</button></a>
+                            </div>
+                            <div class="py-1">
+                                <a href="{% url 'user-invoice-pdf' order.id %}"><button
+                                        class="download-invoice-btn">Download
+                                        Invoice</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                <div class="row align-items-center justify-content-end" style="padding: 0px 0.5rem;">
+                    <nav aria-label="...">
+                        <ul class="pagination mb-0">
+                            <li class="page-item">
+                                {% if page_obj.has_previous %}
+                                <a class="page-link" href="?page={{page_obj.previous_page_number}}">Previous</a>
+                                {% endif %}
+                            </li>
+                            <span class="page-link pagination-curve">{{page_obj.number}}</span>
+                            <li class="page-item">
+                                {% if page_obj.has_next %}
+                                <a class="page-link" href="?page={{page_obj.next_page_number}}">Next</a>
+                                {% endif %}
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                {% else %}
+                <div class="col-lg-12">
+                    <div class="text-center">
+                        <h1 class="py-3">No Products</h1>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

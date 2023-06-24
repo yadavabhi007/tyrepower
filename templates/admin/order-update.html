@@ -1,0 +1,122 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block my_title2 %} Change Order {% endblock my_title2 %}
+
+{% block content %}
+
+<style>
+  .container {
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  h1 {
+    font-size: 22px;
+    width: 25%;
+    margin-top: 0;
+  }
+
+  .text-field {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 250px;
+  }
+
+  .orders-btn {
+    background-color: #151514 !important;
+    padding: 7px 25px !important;
+    text-align: center !important;
+    transition: 0.5s !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 20px #eee !important;
+    border-radius: 5px !important;
+    outline: none !important;
+    border: none !important;
+    margin-right: 50px;
+  }
+
+  .orders-btn:hover {
+    background-color: #e0313c !important;
+    color: #fff !important;
+    outline: none !important;
+    border: none !important;
+  }
+</style>
+
+
+<div class="container">
+  <form class="contact-form-main-area" method="post" id="paymentFrm">
+    {% csrf_token %}
+    <div class="d-flex align-items-center mb-3">
+      <h1 class="p-0 m-0">Order ID : </h1>
+      <input type="text" class="text-field" placeholder="Update Order ID" value="{{order.order_id}}" disabled>
+    </div>
+    <div class="d-flex align-items-center mb-3">
+      <h1 class="p-0 m-0">PO number : </h1>
+      <input type="text" class="text-field" placeholder="Update PO Number" id="po_number" name="po_number" value="{{order.PO_number|default:''}}">
+    </div>
+    <div class="d-flex align-items-center mb-3">
+      <h1 class="p-0 m-0">User : </h1>
+      <input type="text" class="text-field" placeholder="Update User" value="{{order.user}}" disabled>
+    </div>
+    <div class="d-flex align-items-center mb-3">
+      <h1 class="p-0 m-0">Tyre : </h1>
+      <h3 class="text-field">{% for tyre in order.tyre.all %}<span>{{tyre}} x {{tyre.total_number}} = R {{tyre.total_price}}</span><br>{% endfor %}</h3>
+    </div>
+    <div class="d-flex align-items-center mb-3">
+      <h1 class="p-0 m-0">Total Price : </h1>
+      <input type="text" class="text-field" placeholder="Update User" value="R {{total_price}}" disabled>
+    </div>
+    <div class="d-flex align-items-center mb-3">
+      <h1 class="p-0 m-0">Status: </h1>
+      <select class="form-control text-field" id="status" name="status" required>
+        {% for status in model.STATUS %}
+        {% if order.status == status.0 %}
+        <option value="{{ status.0 }}" selected>{{ status.1 }}</option>
+        {% else %}
+        <option value="{{ status.0 }}">{{ status.1 }}</option>
+        {% endif %}
+        {% endfor %}
+      </select>
+    </div>
+    <div class="d-flex align-items-center mb-3">
+      <h1 class="p-0 m-0">Product delivery : </h1>
+      <input type="text" class="text-field" placeholder="Update Product Delivery" value="{{order.product_delivery}}" disabled>
+    </div>
+    <div class="d-flex align-items-center mb-3">
+      <h1 class="p-0 m-0">Driver's name : </h1>
+      <input type="text" class="text-field" placeholder="Update Driver's Name" value="{{order.driver_name|default:''}}" disabled>
+    </div>
+    <div class="d-flex align-items-center mb-3">
+      <h1 class="p-0 m-0">Vehical name : </h1>
+      <input type="text" class="text-field" placeholder="Update Vehical Name" value="{{order.vehical_name|default:''}}" disabled>
+    </div>
+    <div class="d-flex align-items-center mb-3">
+      <h1 class="p-0 m-0">Vehical number : </h1>
+      <input type="text" class="text-field" placeholder="Update Vehical Number" value="{{order.vehical_number|default:''}}" disabled>
+    </div>
+    <div class="d-flex align-items-center mb-3">
+      <h1 class="p-0 m-0">Shipping address : </h1>
+      <textarea name="delivery_address" id="delivery_address" cols="20" rows="6" class="form-control field change_border" placeholder="Update Shipping Address" autofocus="" disabled>{{order.shipping_address|default:''}}</textarea>
+    </div>
+    <div class="d-flex align-items-center mb-3">
+      <h1 class="p-0 m-0">Created at : </h1>
+      <p class="py-2 m-0">{{order.created_at}}</p>
+    </div>
+    <div class="d-flex align-items-center mb-3">
+      <h1 class="p-0 m-0">Updated at : </h1>
+      <p class="py-2 m-0">{{order.updated_at}}</p>
+    </div>
+    <div class="d-flex align-items-center justify-content-between mb-3">
+      <button type="submit" class="orders-btn"><a href="{% url 'order-update' order.id %}"></a>Save</button>
+      <a class="orders-btn" href="{% url 'order-delete-confirm' order.id %}">Delete</a>
+    </div>
+  </form>
+</div>
+{% endblock content %}

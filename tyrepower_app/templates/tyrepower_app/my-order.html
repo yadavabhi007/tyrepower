@@ -1,0 +1,78 @@
+{% extends 'tyrepower_app/base.html' %}
+{% block content %}
+{% load static %}
+
+
+<style>
+    .info {
+        color: green;
+        margin-left: 22px;
+    }
+
+    .error {
+        color: red;
+        margin-left: 22px;
+    }
+</style>
+
+
+<div class="page-wrapper wrapper_page">
+    <div class="page-breadcrumb bg-white white_bg">
+        <div class="tyre-list-main-div">
+            <div class="my-3">
+                <div class="heading-main-div-area py-4 bg-white">
+                    <h2 class="text-center p-0 m-0">My orders</h2>
+                </div>
+            </div>
+            {% if messages %}
+            {% for message in messages %}
+            <span class="{{message.tags}}">{{message}}</span>
+            {% endfor %}
+            {% endif %}
+            <div class="containor">
+                {% if orders %}
+                {% for order in orders %}
+                <div class="main-order-card">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6">
+                            <div class="row">
+                                <div class="col-lg-8 my-order-product-name-area">
+                                    <h6>Order ID: <span>{{order.order_id}}</span> </h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 my-order-price">
+                            <p>PO Number: <span>{{order.PO_number}}</span></p>
+                            <p>Price: <span>R {{order.total_price}}</span> </p>
+                        </div>
+                        <div class="col-lg-4">
+                            <div>
+                                <div class="green-delivered-icon"></div>
+                                <span class="delivered-date-info">{{order.status}} on {{order.updated_at}}</span>
+                            </div>
+                            <div class="view-download-invoice-main-info">
+                            <div class="py-1">
+                                <a href="{% url 'invoice' order.id %}"><button class="download-invoice-btn">View
+                                        Invoice</button></a>
+                            </div>
+                            <div class="py-1">
+                                <a href="{% url 'invoice-pdf' order.id %}"><button class="download-invoice-btn">Download
+                                        Invoice</button></a>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% else %}
+                <div class="col-lg-12">
+                    <div class="text-center">
+                        <h1 class="py-3">No Products</h1>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

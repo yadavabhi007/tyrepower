@@ -1,0 +1,245 @@
+{% extends 'tyrepower_app/base.html' %}
+{% block content %}
+{% load static %}
+
+<style>
+    .info {
+    color: green;
+    margin-left: 22px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    }
+
+    .error {
+        color: red;
+        margin-left: 22px;
+    }
+
+    .filter-by-brand {
+        font-weight: 600;
+        font-size: 15px;
+    }
+
+    .select2-container--default .select2-search--dropdown .select2-search__field {
+        border: 1px solid #aaa !important;
+        border-radius: 5px !important;
+    }
+
+    .select2-container--default .select2-results__option[aria-selected=true] {
+        background-color: #cdcdcd;
+        border-radius: 5px;
+        margin: 0px 4px;
+    }
+
+    .select2-container--default .select2-results__option--highlighted[aria-selected] {
+        background-color: #e0313c;
+        color: #fff !important;
+        border-radius: 5px;
+        margin: 0px 4px;
+    }
+
+    .select2-results {
+        margin-bottom: 5px;
+    }
+
+    .select2-container .select2-selection--single {
+        height: 35px !important;
+    }
+
+    .select2-container .select2-selection--single .select2-selection__rendered {
+        padding: 2.5px 15px 2px 10px !important;
+        font-size: 15px;
+    }
+
+    .select2-container--default .select2-selection--single .select2-selection__arrow {
+        height: 33px !important;
+        right: 3px !important;
+    }
+    
+    .add-to-card-info input{
+        width: 70px;
+        height: 20px px;
+        font-size: 15px;
+        font-weight: 500;
+        border: 2px solid #e0313c;
+        border-radius: 5px;
+        padding: 2px 4px;
+        height: 30px;
+    }
+
+    .add-to-card-info button {
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 2px 10px;
+        background-color: transparent;
+    }
+
+    .add-to-card-info button i {
+        font-size: 20px;
+        color: #424242;
+    }
+
+    .special_offer_image_area{
+        height: 50px;
+        width: 115px;
+    }
+
+    .special_offer_image_area img{
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+
+</style>
+
+<div class="page-wrapper wrapper_page">
+    <div class="page-breadcrumb bg-white white_bg">
+        <div class="tyre-list-main-div">
+            <div class="my-3">
+                <div class="heading-main-div-area py-4 bg-white">
+                    <h2 class="text-center p-0 m-0">Tyre Lists</h2>
+                </div>
+            </div>
+            <div class="containor">
+                <div class="row">
+                    {% if messages %}
+                    {% for message in messages %}
+                    <span class="{{message.tags}}">{{message}}</span>
+                    {% endfor %}
+                    {% endif %}
+                    {% if page_obj %}
+                    {% for data in page_obj %}
+                    <div class="col-lg-6">
+                        <div class="product-detail-card-info" style="border-left: 15px solid {{data.color}}; border-top-left-radius:5px; border-bottom-left-radius:5px">
+                            <div class="d-flex tyre-card-main-div bg-white ">
+                                <div class="card-left-main-div">
+                                    <div class="d-flex align-items-center justify-content-between top-model-code-area">
+                                        <p class="p-0 m-0">Code</p>
+                                        <h6 class="p-0 m-0">{{data.code}}</h6>
+                                    </div>
+                                    <hr class="p-0 m-0" />
+                                    <div class="p-2">
+                                        <div class="d-flex py-2">
+                                            <div class="tyre-left-left-tyre-image d-flex align-items-center flex-column justify-content-between">
+                                                {% if data.logo %}
+                                                <img src="{{data.logo.url}}" alt="Tyre 205">
+                                                {% else %}
+                                                <img src="{% static 'tyrepower_app/images/TyrePowerLogo.png' %}" alt="TyrePower">
+                                                {% endif %}
+                                                {% if data.total is 0 %}
+                                                <p class="m-0 available-stock-value">Out Of Stock</p>
+                                                {% else %}
+                                                <p class="m-0 available-stock-value">Total {{data.total}} in Stock</p>
+                                                {% endif %}
+                                            </div>
+                                            <div class="ps-2 w-100">
+                                                <div
+                                                    class="d-flex align-items-end justify-content-between card-heading-with-icon pb-4">
+                                                    <h6 class="p-0 m-0">{{data.name}}</h6>
+                                                    <i class="fa fa-trophy" aria-hidden="true"></i>
+                                                </div>
+                                                <div class="pb-4">
+                                                    <div class="d-flex justify-content-between align-items-center brand">
+                                                        <h6 class="p-0 m-0">Brand</h6>
+                                                        <p class="p-0 m-0">{{data.brand}}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="pb-2">
+                                                    <div class="d-flex more-details align-items-center">
+                                                        <i class="fa fa-info-circle pe-1" aria-hidden="true"></i>
+                                                        <h6 class="m-0"><a class="check-more-details"
+                                                                href="{% url 'tyre-detail' data.id %}">Product
+                                                                Details</a></h6>
+                                                    </div>
+                                                    <div class="card-product-info-area">
+                                                        <p>{{data.description}}</p>
+                                                    </div>
+                                                </div>
+                                                {% if data.offer %}
+                                                <div class="d-flex align-items-center justify-content-end">
+                                                    <div class="special_offer_image_area">
+                                                        <img src="{% static 'tyrepower_app/images/specialoffer.png' %}" alt="Image Not Found">
+                                                    </div>
+                                                </div>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-right-main-div">
+                                    <div class="contact-form-main-area">
+                                        <div class="d-flex align-items-center justify-content-between add-to-card-section">
+                                            <h6 class="p-0 m-0">Size</h6>
+                                            <p class="p-0 m-0 tyre-list-price-detail">{{data.size}}</p>
+                                        </div>
+                                    </div>
+                                    <hr class="p-0 m-0" />
+                                    <div class="w-100 add-to-card-detail">
+                                        <div class="d-flex justify-content-between align-items-center py-3 px-2">
+                                            <h6 class="p-0 m-0">List Price</h6>
+                                            <p class="p-0 m-0 tyre-list-price-detail">R {{data.list_price}}</p>
+                                        </div>
+                                        <hr class="p-0 m-0" />
+                                        <div class="d-flex justify-content-between align-items-center py-4 px-2">
+                                            <h6 class="p-0 m-0">Net Price</h6>
+                                            <p class="p-0 m-0 tyre-list-price-detail">R {{data.net_price}}</p>
+                                        </div>
+                                        <hr class="p-0 m-0" />
+                                        <form class="contact-form-main-area" action="{% url 'add-to-cart' data.id %}" method="post" id="paymentFrm">
+                                            {% csrf_token %}
+                                            <div class="add-to-card-info d-flex align-items-center justify-content-between py-4 px-2">
+                                                <input type="number" min="1" value="1" max="499" name="total_number" required="">
+                                                <button type="submit"><i class="fas fa-shopping-cart"></i></button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <div class="row align-items-center justify-content-end" style="padding: 0px 0.5rem;">
+                        <nav aria-label="...">
+                            <ul class="pagination mb-0">
+                                <li class="page-item">
+                                    {% if page_obj.has_previous %}
+                                    <a class="page-link" href="?page=1">First</a>
+                                    {% endif %}
+                                </li>
+                                <li class="page-item">
+                                    {% if page_obj.has_previous %}
+                                    <a class="page-link" href="?page={{page_obj.previous_page_number}}">Previous</a>
+                                    {% endif %}
+                                </li>
+                                <span class="page-link pagination-curve">{{page_obj.number}}</span>
+                                <li class="page-item">
+                                    {% if page_obj.has_next %}
+                                    <a class="page-link" href="?page={{page_obj.next_page_number}}">Next</a>
+                                    {% endif %}
+                                </li>
+                                <li>
+                                    {% if page_obj.has_next %}
+                                    <a class="page-link" href="?page={{page_obj.paginator.num_pages }}">Last</a>
+                                    {% endif %}
+                                </li>
+                            </ul>
+                            <ul class="pagination mb-0">
+                                <strong><span>Total {{total}} Items</span></strong>
+                            </ul>
+                        </nav>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('.select2').select2();
+
+
+
+</script>
+{% endblock content %}

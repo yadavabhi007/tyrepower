@@ -1,0 +1,100 @@
+{% extends 'tyrepower_app/base.html' %}
+{% block content %}
+{% load static %}
+
+<style>
+  @media only screen and (max-width:767px) {
+   .invoice-detail-info-area {
+   width:90% !important; 
+   }
+   .invoice-detail-info-area img {
+    width: 40% !important;
+    height: 35px !important;
+   }
+  }
+</style>
+
+<div class="page-wrapper wrapper_page">
+  <div class="page-breadcrumb bg-white white_bg">
+    <div class="search-stock-main-div">
+      <div class="my-4">
+        <div class="heading-main-div-area py-4 bg-white">
+          <h2 class="text-center p-0 m-0">Invoice</h2>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="invoice-detail-info-area"
+      style="padding:10px; overflow-x:auto; display: block; width:76%; background: #fff; margin:auto;">
+      <table>
+        <tr>
+          <td colspan="4" style="padding:20px;">
+            <img src="{% static 'images/TyrePowerLogo1.jpeg' %}" width="100" height="100" alt="logo" border="0"
+              style="width:26%; height: 50px;" />
+          </td>
+          <td colspan="2" style="padding:20px; font-size: 20px;font-weight: 600;color: #dc3635;">
+            <strong>Invoice</strong>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" style="padding: 70px 20px 50px 20px;">Hello abhi<br>
+            Thanks your for shopping from our store<br> and for your order.</td>
+          <td colspan="2" style="padding: 70px 20px 50px 20px;">
+            <small>ORDER ID:</small> {{order.order_id}}<br />
+            <small>PO Number:</small> {{order.PO_number}}<br />
+            <small>{{order.created_at}}</small>
+          </td>
+        </tr>
+        <tr style="border-top: 1px solid #cdcdcd;">
+          <th style="padding:20px;">Item</th>
+          <th style="padding:20px;">Code</th>
+          <th style="padding:20px;">Quantity</th>
+          <th style="padding:20px;">Unit Price</th>
+          <th style="padding:20px;">Total Price</th>
+        </tr>
+        <tr style="border-bottom: 1px solid #cdcdcd; margin:0px 0px 20px 0px;">
+          <td style="padding: 0px 20px 0px 20px; color: #ff0000;">{% for tyre in order.tyre.all %}<span>{{tyre.tyre.name}} {{tyre.tyre.size}}<br><br></span>{% endfor %}
+          </td>
+          <td style="padding: 0px 20px 0px 20px; color: #ff0000;">{% for tyre in order.tyre.all %}<span>{{tyre.tyre.code}}<br><br></span>{% endfor %}
+          </td>
+          <td style="padding: 0px 20px 0px 20px; color: #ff0000;">{% for tyre in order.tyre.all %}<span>{{tyre.total_number}}<br><br></span>{% endfor %}
+          </td>
+          <td style="padding: 0px 20px 0px 20px; color: #ff0000;">{% for net_price in net_price_list %}<span>{{net_price}}<br><br></span>{% endfor %}
+          </td>
+          <td style="padding: 0px 20px 0px 20px; color: #ff0000;">{% for tyre in order.tyre.all %}<span>R {{tyre.total_price}}<br><br></span>{% endfor %}
+          </td>
+        </tr>
+        <tr>
+          <th colspan="4" style="text-align: right; padding: 20px 20px 10px 20px;">Subtotal:</th>
+          <td style="padding:20px 20px 10px 20px;">R {{total_price}}</td>
+        </tr>
+        <tr>
+          <th colspan="4" style="text-align: right; padding:0px 20px 10px 20px;">VAT (15%):</th>
+          <td style="padding:10px 20px 10px 20px;">R {{vat}}</td>
+        </tr>
+        <tr>
+          <th colspan="4" style="text-align: right; padding:0px 20px 10px 20px;">Grand Total (Incl. Tax):</th>
+          <td style="padding:10px 20px 10px 20px;">R {{total}}</td>
+        </tr>
+        {% if order.product_delivery == 'Courier Service' %}
+        <tr>
+          <td style="padding: 40px 0px 40px 20px;" colspan="4">
+            <strong>SHIPPING INFORMATION</strong>
+            {{order.shipping_address|linebreaks}}
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td colspan="2" style="text-align: center;">
+            <p>Thank You</p>
+          </td>
+          <td></td>
+        </tr>
+        {% endif %}
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

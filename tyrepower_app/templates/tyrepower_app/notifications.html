@@ -1,0 +1,106 @@
+{% extends 'tyrepower_app/base.html' %}
+{% block content %}
+{% load static %}
+
+<style>
+    .info {
+        color: green;
+        margin-left: 22px;
+    }
+
+    .error {
+        color: red;
+        margin-left: 22px;
+    }
+</style>
+
+<div class="page-wrapper wrapper_page">
+    <div class="page-breadcrumb bg-white white_bg">
+        <div class="tyre-list-main-div">
+            <div class="mt-3">
+                <div class="heading-main-div-area py-4 bg-white">
+                    <h2 class="text-center p-0 m-0">Notifications</h2>
+                </div>
+            </div>
+        </div>
+        {% if messages %}
+        {% for message in messages %}
+        <span class="{{message.tags}}">{{message}}</span>
+        {% endfor %}
+        {% endif %}
+        <div class="container-fluid fluid_container responsive_container white_bg">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="faq-accordian-main-area notification-arrow-hide-parents">
+                        <div class="accordion accordion-flush" id="accordionFlushExample">
+                            {% if page_obj %}
+                            {% for notification in page_obj %}
+                            <div class="accordion-item items_accordion">
+                                <h2 class="accordion-header" id="flush-headingOne{{notification.id}}">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapseOne{{notification.id}}" aria-expanded="false"
+                                        aria-controls="flush-collapseOne{{notification.id}}">
+                                        <div class="notification-detail-main-area">
+                                            <div class="notification-heading-main-area">
+                                                <h2>{{notification.heading}}</h2>
+                                                <p class="time_area">{{notification.updated_at}}</p>
+                                            </div>
+                                            <div class="notification-dlt-main-area dlt_area">
+                                                <a href="{% url 'delete-notification' notification.id %}">
+                                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseOne{{notification.id}}"
+                                    class="accordion-collapse collapse {% if forloop.first %}show{% endif %}"
+                                    aria-labelledby="flush-headingOne{{notification.id}}"
+                                    data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">{{notification.message}}</div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            <div class="row align-items-center justify-content-end" style="padding: 0px 0.5rem;">
+                                <nav aria-label="...">
+                                    <ul class="pagination mb-0">
+                                        <li class="page-item">
+                                            {% if page_obj.has_previous %}
+                                            <a class="page-link" href="?page=1">First</a>
+                                            {% endif %}
+                                        </li>
+                                        <li class="page-item">
+                                            {% if page_obj.has_previous %}
+                                            <a class="page-link"
+                                                href="?page={{page_obj.previous_page_number}}">Previous</a>
+                                            {% endif %}
+                                        </li>
+                                        <span class="page-link pagination-curve">{{page_obj.number}}</span>
+                                        <li class="page-item">
+                                            {% if page_obj.has_next %}
+                                            <a class="page-link" href="?page={{page_obj.next_page_number}}">Next</a>
+                                            {% endif %}
+                                        </li>
+                                        <li>
+                                            {% if page_obj.has_next %}
+                                            <a class="page-link" href="?page={{page_obj.paginator.num_pages }}">Last</a>
+                                            {% endif %}
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            {% else %}
+                            <div class="col-lg-12">
+                                <div class="text-center">
+                                    <h1 class="py-3">No Notifications</h1>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

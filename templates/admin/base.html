@@ -1,0 +1,207 @@
+<style>
+    section.content-header {
+        background: #8b6fc0;
+        color: white;
+    }
+
+    li.breadcrumb-item {
+        font-size: 30px;
+        padding: 8px 0px;
+    }
+
+    .object-tools {
+        margin: 0px !important;
+    }
+
+    #changelist .row.p-2 {
+        justify-content: space-between;
+    }
+
+    #changelist-search {
+        margin-bottom: 0px;
+    }
+
+    .object-tools li {
+        display: block;
+        float: left;
+        margin-left: 0px !important;
+        margin-right: 5px;
+    }
+
+    .object-tools li a,
+    span a {
+        background-color: #151514 !important;
+        padding: 7px 25px !important;
+        text-align: center !important;
+        transition: 0.5s !important;
+        color: #ffffff !important;
+        box-shadow: 0 0 20px #eee !important;
+        border-radius: 5px !important;
+        outline: none !important;
+        border: none !important;
+    }
+
+    .object-tools li a:hover,
+    span a:hover {
+        background-color: #e0313c !important;
+        color: #fff !important;
+        outline: none !important;
+        border: none !important;
+    }
+
+    #changelist {
+        border-radius: 5px !important;
+    }
+
+    #id_new_password1_helptext{
+        display:none;
+    }
+    
+    .submit-row {
+        display: flex;
+        align-items: center;
+    }
+
+    .submit-row input[type="submit"] {
+        background-color: #151514 !important;
+        padding: 7px 25px !important;
+        text-align: center !important;
+        transition: 0.5s !important;
+        color: #ffffff !important;
+        box-shadow: 0 0 20px #eee !important;
+        border-radius: 5px !important;
+        outline: none !important;
+        border: none !important;
+        margin-right: 50px;
+    }
+
+    .submit-row input[type="submit"]:hover {
+        background-color: #e0313c !important;
+        color: #fff !important;
+        outline: none !important;
+        border: none !important;
+    }
+
+    .deletelink-box {
+        margin-bottom: 0px !important;
+        margin-right: 50px;
+    }
+
+    .deletelink {
+        background-color: #151514 !important;
+        padding: 9px 25px !important;
+        text-align: center !important;
+        transition: 0.5s !important;
+        color: #ffffff !important;
+        box-shadow: 0 0 20px #eee !important;
+        border-radius: 5px !important;
+        outline: none !important;
+        border: none !important;
+        background-image: none !important;
+    }
+
+    .deletelink:hover {
+        background-color: #e0313c !important;
+        color: #fff !important;
+        outline: none !important;
+        border: none !important;
+    }
+
+    .delete-confirmation form .cancel-link {
+        height: auto !important;
+        line-height: inherit !important;
+        vertical-align: top !important;
+        background-color: #151514 !important;
+        padding: 7px 25px !important;
+        text-align: center !important;
+        transition: 0.5s !important;
+        color: #ffffff !important;
+        box-shadow: 0 0 20px #eee !important;
+        border-radius: 5px !important;
+        outline: none !important;
+        border: none !important;
+        margin-right: 10px;
+    }
+
+    .delete-confirmation form .cancel-link:hover {
+        background-color: #e0313c !important;
+        color: #fff !important;
+        outline: none !important;
+        border: none !important;
+    }
+
+    .delete-confirmation form input[type="submit"] {
+        background-color: #151514 !important;
+        padding: 7px 25px !important;
+        text-align: center !important;
+        transition: 0.5s !important;
+        color: #ffffff !important;
+        box-shadow: 0 0 20px #eee !important;
+        border-radius: 5px !important;
+        outline: none !important;
+        border: none !important;
+        margin-right: 10px;
+    }
+
+    .delete-confirmation form input[type="submit"]:hover {
+        background-color: #e0313c !important;
+        color: #fff !important;
+        outline: none !important;
+        border: none !important;
+    }
+</style>
+
+{% extends 'adminlte/base.html' %}
+{% load static i18n %}
+
+{% block extra_head %}
+{{ block.super }}
+
+{% if LANGUAGE_BIDI %}
+<link rel="stylesheet" type="text/css"
+    href="{% block stylesheet_rtl %}{% static 'admin/css/rtl.css' %}{% endblock %}" />
+{% endif %}
+<link rel="stylesheet" type="text/css" href="{% static 'admin/css/base.css' %}" />
+{% block extrastyle %}{% endblock %}
+{% block extrahead %}{% endblock %}
+{% block blockbots %}
+<meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
+{% endblock %}
+
+{% block nav_header %}
+{% include 'admin/lib/_main_header.html' %}
+{% endblock %}
+
+{% block nav_sidebar %}
+{% include 'admin/lib/_main_sidebar.html' %}
+{% endblock %}
+
+{% block content_header %}
+<section class="content-header">
+    <div class="container-fluid">
+        {% block breadcrumbs %}
+        <div class="row">
+            <div class="col-sm-12">
+                <h2 class="mb-0">{% block my_title2 %} {% endblock my_title2 %}</h2>
+            </div>
+        </div>
+        <!-- <ol class="breadcrumb">
+            <li class="breadcrumb-item">{% block my_title %} {% endblock my_title %}</li>
+            {% if title %} {{ title }}{% endif %}
+        </ol> -->
+        {% endblock %}
+    </div>
+</section>
+
+{% endblock %}
+
+{% block content_block_wrap %}
+
+{% block content %}
+{% block object-tools %}{% endblock %}
+{{ content }}
+{% block sidebar %}{% endblock %}
+{% endblock %}
+
+
+{% endblock %}

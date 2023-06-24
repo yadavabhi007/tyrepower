@@ -1,0 +1,108 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block my_title2 %} Select order to change {% endblock my_title2 %}
+
+{% block content %}
+<style>
+  .box {
+    padding: 20px 10px;
+
+  }
+
+  #example td {
+    padding: 12px 20px;
+  }
+
+  #example th {
+    padding: 12px 20px;
+  }
+
+  #example td {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1e1d1db6;
+  }
+
+  .main-table-div-area {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  }
+
+  .main-table {
+    border: 1px solid #ddd;
+    border-radius: 10px !important;
+  }
+</style>
+
+<div class="container p-0">
+  <div class="main-body">
+    <section class="product-admin py-2">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 p-0 m-0 main-table-div-area">
+            <div class="table-reponsive box">
+              {% if page_obj %}
+              <table id="example" class="table table-striped main-table">
+                <thead>
+                  <tr>
+                    <th>S.No.</th>
+                    <th>Order ID</th>
+                    <th>PO number</th>
+                    <th>User</th>
+                    <th>Status</th>
+                    <th>Created at</th>
+                    <th>Updated at</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for order in page_obj %}
+                  <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td><a href="{% url 'order-update' order.id %}">{{order.order_id}}</a></td>
+                    <td>{{order.PO_number|default:''}}</td>
+                    <td>{{order.user}}</td>
+                    <td>{{order.status}}</td>
+                    <td>{{order.created_at}}</td>
+                    <td>{{order.updated_at}}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+              <div class="row align-items-center justify-content-end" style="padding: 0px 0.5rem;">
+                <nav aria-label="...">
+                  <ul class="pagination mb-0">
+                    <li class="page-item">
+                      {% if page_obj.has_previous %}
+                      <a class="page-link" href="?page=1">First</a>
+                      {% endif %}
+                    </li>
+                    <li class="page-item">
+                      {% if page_obj.has_previous %}
+                      <a class="page-link" href="?page={{page_obj.previous_page_number}}">Previous</a>
+                      {% endif %}
+                    </li>
+                    <span class="page-link pagination-curve">{{page_obj.number}}</span>
+                    <li class="page-item">
+                      {% if page_obj.has_next %}
+                      <a class="page-link" href="?page={{page_obj.next_page_number}}">Next</a>
+                      {% endif %}
+                    </li>
+                    <li>
+                      {% if page_obj.has_next %}
+                      <a class="page-link" href="?page={{page_obj.paginator.num_pages }}">Last</a>
+                      {% endif %}
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+{% endblock content %}

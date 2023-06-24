@@ -1,0 +1,117 @@
+{% extends 'tyrepower_app/base.html' %}
+{% block content %}
+{% load static %}
+<style>
+    .address-type {
+        margin-bottom: 10px;
+    }
+
+    .address-type span {
+        text-transform: uppercase;
+        font-size: 11px;
+        color: #878787;
+        vertical-align: middle;
+        padding: 4px 7px;
+        border-radius: 2px;
+        background-color: #f0f0f0;
+        font-weight: 600;
+        margin-right: 15px;
+    }
+
+    .address-type-info {
+        line-height: 1.5;
+    }
+
+    .name {
+        font-weight: 600;
+    }
+
+    .name {
+        font-weight: 600;
+    }
+
+    .contact {
+        margin: 0 0 0 15px;
+    }
+
+    .main-address {
+        margin-top: 10px;
+        display: block;
+        max-width: 523px;
+    }
+
+    .pincode {
+        font-weight: 600;
+    }
+
+    .main-address-section-area {
+        border: 1px solid gray;
+        padding: 25px;
+        border-radius: 5px;
+        width: 90%;
+        margin: auto;
+    }
+
+    .main-address-section-area input {
+        width: 100%;
+        font-size: 15px;
+        border: 1px solid #e0e0e0;
+        outline: none;
+        border-radius: 2px;
+        padding: 10px 15px 10px 15px;
+        box-shadow: none;
+        margin-bottom: 20px;
+    }
+</style>
+
+<div class="page-wrapper wrapper_page">
+    <div class="page-breadcrumb bg-white white_bg">
+        <div class="search-stock-main-div">
+            <div class="my-3">
+                <div class="heading-main-div-area py-4 bg-white">
+                    <h2 class="text-center p-0 m-0">Update Address</h2>
+                </div>
+            </div>
+            <div class="containor">
+                <div>
+                    {% if messages %}
+                    {% for message in messages %}
+                    <span class="{{message.tags}}">{{message}}</span>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="main-order-card">
+                    <div class="row align-items-center">
+                        <form action="{% url 'update-address' address.id %}" method="post">
+                        {% csrf_token %}
+                            <div class="main-address-section-area w-100">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input type="text" maxlength="16" value="{{address.name}}" name="name" id="name" placeholder="Name" required>
+                                        <input type="text" maxlength="16" value="{{address.house_and_street}}" name="house_and_street"
+                                            id="house_and_street" placeholder="House and Street" required>
+                                        <input type="text" maxlength="16" value="{{address.province}}" name="province" id="province"
+                                            placeholder="Province" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="number" min="0" max="99999999999999" value="{{address.phone}}" name="phone" id="phone"
+                                            placeholder="Phone" onkeypress="if( isNaN( String.fromCharCode(event.keyCode))) return false;" required>
+                                        <input type="text" maxlength="16" value="{{address.suburb}}" name="suburb" id="suburb"
+                                            placeholder="Suburb" required>
+                                        <input type="number" min="0" max="99999999" name="postcode" value="{{address.postcode}}" id="postcode" placeholder="Post Code" required>
+                                    </div>
+                                    <div class="py-1">
+                                        <button type="submit" class="download-invoice-btn">Update Address</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
